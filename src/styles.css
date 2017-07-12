@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/purple-green.css";
+body{
+    margin:  0;
+    font-family: "roboto"
+}
+md-card{
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}

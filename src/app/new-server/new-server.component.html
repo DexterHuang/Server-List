@@ -1,0 +1,30 @@
+<div class="container">
+  <md-card>
+    <md-card-header>
+      <md-card-title>新增伺服器</md-card-title>
+      <md-card-subtitle>請輸您的伺服器資料</md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+        <md-input-container floatPlaceholder="auto">
+          <input mdInput formControlName="serverName" type="text" required placeholder="伺服器名稱">
+          <md-error>請輸入伺服器名稱</md-error>
+        </md-input-container>
+        <md-input-container floatPlaceholder="auto">
+          <input mdInput formControlName="serverIP" type="text" required placeholder="IP">
+          <md-error>請輸入IP</md-error>
+        </md-input-container>
+
+        <md-checkbox formControlName="onlineMode">有開啟正版認證</md-checkbox>
+
+        <md-input-container floatPlaceholder="auto">
+          <textarea mdInput formControlName="description" type="text" required placeholder="伺服器簡介"></textarea>
+          <md-error>請輸入伺服器簡介</md-error>
+        </md-input-container>
+        <md-card-actions align="end">
+          <button md-raised-button color="primary" [disabled]="!formGroup.valid">確認</button>
+        </md-card-actions>
+      </form>
+    </md-card-content>
+  </md-card>
+</div>

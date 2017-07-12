@@ -1,0 +1,10 @@
+<md-toolbar color="primary">
+  <span>您已註冊的伺服器列表</span>
+  <md-toolbar-row>
+    <button md-raised-button routerLink="./newServer" color="accent">新增伺服器</button>
+  </md-toolbar-row>
+</md-toolbar>
+
+<md-card-content *ngIf="getCurrentUser()">
+  <app-server-list></app-server-list>
+</md-card-content>
