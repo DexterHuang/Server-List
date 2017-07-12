@@ -14,7 +14,7 @@ export class AppComponent {
       authDomain: 'serverlist-362d5.firebaseapp.com',
       databaseURL: 'https://serverlist-362d5.firebaseio.com',
       projectId: 'serverlist-362d5',
-      storageBucket: '',
+      storageBucket: 'serverlist-362d5.appspot.com',
       messagingSenderId: '576678373258'
     };
     firebase.initializeApp(config);

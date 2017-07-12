@@ -1,20 +1,20 @@
 <md-list-item>
   <md-card color="accent">
-    <md-card-header>
-      <div class="header">
-        <div>
-          <md-card-title>{{server.serverName}}</md-card-title>
-          <md-card-subtitle>{{server.IP}}</md-card-subtitle>
-        </div>
-        <h2>{{ping}}</h2>
-      </div>
-    </md-card-header>
-    <img mdCardImage src="Card wide image source">
     <md-card-content>
-      <p>{{server.description}}</p>
+      <div class="container">
+        <div class="titleBox">
+          <h3>{{server.serverName}}</h3>
+          <p>{{server.IP}}</p>
+        </div>
+        <div class="imageBox">
+          <a [routerLink]="['../server', {uid: server.uid}]">
+          <img mdCardImage src={{server.logoURL}}>
+          </a>
+        </div>
+        <div class="pingBox">
+          <p>{{ping}}</p>
+        </div>
+      </div>
     </md-card-content>
-    <md-card-actions *ngIf="canEdit" align="end">
-      <button md-raised-button color="primary" [routerLink]="['../myServers/editServer', {uid: server.uid}]">編輯</button>
-    </md-card-actions>
   </md-card>
 </md-list-item>

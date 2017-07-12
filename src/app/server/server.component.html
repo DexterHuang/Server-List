@@ -1,0 +1,16 @@
+<md-list-item *ngIf="server">
+  <md-card color="accent">
+
+    <md-card-header>
+      <md-card-title>{{server.serverName}}</md-card-title>
+      <md-card-subtitle>{{server.IP}}</md-card-subtitle>
+    </md-card-header>
+    <img mdCardImage src={{server.logoURL}}>
+    <md-card-content>
+      <p>{{server.description}}</p>
+    </md-card-content>
+    <md-card-actions *ngIf="canEdit()" align="end">
+      <button md-raised-button color="primary" [routerLink]="['../myServers/editServer', {uid: server.uid}]">編輯</button>
+    </md-card-actions>
+  </md-card>
+</md-list-item>

@@ -1,0 +1,14 @@
+imageContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+img {
+    object-fit: cover;
+    width: 100%;
+    height: 100px;
+    align-self: center;
+}
+textarea {
+    height: 300px;
+}

@@ -1,3 +1,4 @@
+import { ServerComponent } from './server/server.component';
 import { EditServerComponent } from './edit-server/edit-server.component';
 import { NewServerComponent } from './new-server/new-server.component';
 import { MyServersComponent } from './my-servers/my-servers.component';
@@ -15,7 +16,8 @@ export const router: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'myServers', component: MyServersComponent },
     { path: 'myServers/newServer', component: NewServerComponent },
-    { path: 'myServers/editServer', component: EditServerComponent }
+    { path: 'myServers/editServer', component: EditServerComponent },
+    { path: 'server', component: ServerComponent }
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router);

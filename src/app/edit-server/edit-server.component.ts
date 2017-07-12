@@ -33,6 +33,8 @@ export class EditServerComponent implements OnInit {
           this.server = new Server();
           Object.assign(this.server, e.val());
           this.formGroup.updateValueAndValidity()
+        } else {
+          this.router.navigate(['home'])
         }
       })
     })
@@ -48,7 +50,12 @@ export class EditServerComponent implements OnInit {
     dialog.componentInstance.title = 'NANI??!';
     dialog.componentInstance.buttons.push(new InterfaceButton('No! 我按錯了..'));
     dialog.componentInstance.buttons.push(new InterfaceButton('確定', () => {
-      console.log('delete')
+      firebase.database().ref('servers/' + this.server.uid).remove().then(e => {
+        this.snackBar.open('刪除成功', undefined, {
+          duration: 3000
+        })
+        this.router.navigate(['../myServers'])
+      })
     }));
   }
 }

@@ -16,7 +16,14 @@
         </md-input-container>
 
         <md-checkbox formControlName="onlineMode">有開啟正版認證</md-checkbox>
-
+        <br><label>伺服器Logo</label>
+        <file-drop *ngIf="!this.imageFile" headertext="將伺服器Logo拉至此欄位" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
+          (onFileLeave)="fileLeave($event)"></file-drop>
+        <div *ngIf="this.imageFile" class="imageContainer">
+          <div>
+            <img src="{{this.imageFile}}" alt="">
+          </div>
+        </div>
         <md-input-container floatPlaceholder="auto">
           <textarea mdInput formControlName="description" type="text" required placeholder="伺服器簡介"></textarea>
           <md-error>請輸入伺服器簡介</md-error>

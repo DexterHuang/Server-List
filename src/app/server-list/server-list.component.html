@@ -1,6 +1,6 @@
 <md-list>
   <md-list-item *ngFor="let server of servers">
-    <app-server-list-item [canEdit]="this.getCurrentUser() && (this.getCurrentUser().uid == server.ownerUid)" [server]="server"></app-server-list-item>
+    <app-server-list-item [server]="server"></app-server-list-item>
   </md-list-item>
 </md-list>
 

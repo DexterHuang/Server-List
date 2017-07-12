@@ -18,6 +18,8 @@ import { MyServersComponent } from './my-servers/my-servers.component';
 import { NewServerComponent } from './new-server/new-server.component';
 import { EditServerComponent } from './edit-server/edit-server.component';
 import { CustomMdDialogComponent } from './custom-md-dialog/custom-md-dialog.component';
+import { FileDropModule } from 'ngx-file-drop/lib/ngx-drop';
+import { ServerComponent } from './server/server.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,13 +31,14 @@ import { CustomMdDialogComponent } from './custom-md-dialog/custom-md-dialog.com
     MyServersComponent,
     NewServerComponent,
     EditServerComponent,
-    CustomMdDialogComponent
+    CustomMdDialogComponent,
+    ServerComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MdButtonModule,
     MdCheckboxModule, MdCardModule, routes, MdToolbarModule,
     ReactiveFormsModule, MdInputModule, MdDialogModule,
-    MdSnackBarModule, MdSlideToggleModule
+    MdSnackBarModule, MdSlideToggleModule, FileDropModule
   ],
   providers: [],
   bootstrap: [AppComponent],
