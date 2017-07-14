@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
 export const router: Routes = [
-    { path: '', redirectTo: 'about', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'myServers', component: MyServersComponent },
@@ -20,4 +20,4 @@ export const router: Routes = [
     { path: 'server', component: ServerComponent }
 ];
 
-export const routes: ModuleWithProviders = RouterModule.forRoot(router);
+export const routes: ModuleWithProviders = RouterModule.forRoot(router, { useHash: true });
