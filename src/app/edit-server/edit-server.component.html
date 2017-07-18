@@ -17,13 +17,12 @@
 
         <md-checkbox [(ngModel)]="server.onlineModeEnabled" formControlName="onlineMode">有開啟正版認證</md-checkbox>
 
-        <md-input-container floatPlaceholder="auto">
-          <textarea [(ngModel)]="server.description" mdInput formControlName="description" type="text" required placeholder="伺服器簡介"></textarea>
-          <md-error>請輸入伺服器簡介</md-error>
-        </md-input-container>
+        <quill-editor [(ngModel)]="server.description" formControlName="description"></quill-editor>
+
         <md-card-actions align="end">
           <button md-button type='button' (click)="onClickDelete()" color="alert">刪除</button>
-          <button md-raised-button color="primary" [disabled]="!formGroup.valid">確認</button>
+          <button md-raised-button type='button' (click)="onClickPreview()" color="primary">預覽</button>
+          <button md-raised-button color="primary" [disabled]="!formGroup.valid  || !server.description">確認</button>
         </md-card-actions>
       </form>
     </md-card-content>

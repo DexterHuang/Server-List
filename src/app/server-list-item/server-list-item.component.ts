@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Server } from './../Model/Server';
 import { Component, OnInit, Input } from '@angular/core';
 @Component({
@@ -8,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ServerListItemComponent implements OnInit {
   @Input() server: Server;
   ping = 9999;
+  constructor(private http: HttpClient) { }
   ngOnInit() {
     this.pinger_ping(this.server.IP)
   }
@@ -15,6 +17,7 @@ export class ServerListItemComponent implements OnInit {
 
     try {
       const img = new Image();
+
       const startTime = new Date().getTime();
       img.onload = (e) => {
         this.ping = new Date().getTime() - startTime;

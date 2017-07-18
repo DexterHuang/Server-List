@@ -1,3 +1,4 @@
+import { ServerComponent } from './../server/server.component';
 import { MathHelper } from './../Ultility/MathHelper';
 import { InterfaceButton } from './../Model/InterfaceButton';
 import { CustomMdDialogComponent } from './../custom-md-dialog/custom-md-dialog.component';
@@ -22,7 +23,7 @@ export class EditServerComponent implements OnInit {
     this.formGroup = this.fb.group({
       serverName: ['', Validators.required],
       serverIP: ['', Validators.required],
-      description: ['', Validators.maxLength(3000)],
+      description: ['', Validators.required],
       onlineMode: [false]
     })
   }
@@ -65,5 +66,10 @@ export class EditServerComponent implements OnInit {
         this.router.navigate(['../myServers'])
       })
     }));
+  }
+  onClickPreview() {
+    const dialog = this.dialog.open(ServerComponent).componentInstance;
+    dialog.server = this.server;
+    dialog.forceNoEdit = true;
   }
 }

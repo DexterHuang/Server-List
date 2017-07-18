@@ -1,9 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/purple-green.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
 body{
     margin:  0;
-    font-family: "roboto"
+    font-family: "roboto" ,'Noto Sans TC';
 }
+.mat-button-toggle,
+  .mat-button-base,
+  .mat-button,
+  .mat-raised-button,
+  .mat-fab,
+  .mat-icon-button,
+  .mat-mini-fab,
+  .mat-card,
+  .mat-checkbox,
+  .mat-input-container,
+  .mat-list,
+  .mat-menu-item,
+  .mat-radio-button,
+  .mat-select,
+  .mat-list .mat-list-item .mat-list-item-content,
+  .mat-nav-list .mat-list-item .mat-list-item-content,
+  .mat-simple-snackbar,
+  .mat-tab-label,
+  .mat-slide-toggle-content,
+  .mat-toolbar,
+  .mat-tooltip  {
+    font-family: "roboto" ,'Noto Sans TC';
+  }
 md-card{
     width: 70%;
     margin: auto;
@@ -13,4 +37,4 @@ md-card{
 form{
     display: flex;
     flex-direction: column;
-}
+} 

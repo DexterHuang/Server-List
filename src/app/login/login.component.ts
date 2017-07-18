@@ -11,6 +11,7 @@ import { Router } from '@angular/router'
 })
 export class LoginComponent implements OnInit {
   formGroup: FormGroup;
+  useEmailLogin = false;
   constructor(private fb: FormBuilder, public snackBar: MdSnackBar,
     private router: Router) {
     this.formGroup = this.fb.group({

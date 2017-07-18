@@ -20,6 +20,7 @@ export class NewServerComponent implements OnInit {
   onlineMode = true;
   imageFile: UploadFile;
   imageBytes: File;
+  description: string;
   constructor(private fb: FormBuilder, public snackBar: MdSnackBar,
     private router: Router, private dialog: MdDialog) {
     this.formGroup = this.fb.group({

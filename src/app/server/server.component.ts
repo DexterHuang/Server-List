@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 export class ServerComponent implements OnInit {
   @Input() server: Server = undefined;
   command: string
+  forceNoEdit = false;
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -30,6 +31,9 @@ export class ServerComponent implements OnInit {
 
   }
   canEdit() {
+    if (this.forceNoEdit) {
+      return false;
+    }
     if (this.server && User.getCurrentUser()) {
       if (User.getCurrentUser().uid === this.server.ownerUid) {
         return true;
@@ -37,4 +41,5 @@ export class ServerComponent implements OnInit {
     }
     return false;
   }
+
 }

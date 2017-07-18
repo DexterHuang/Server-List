@@ -11,7 +11,7 @@ import {
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { ServerListComponent } from './server-list/server-list.component';
 import { ServerListItemComponent } from './server-list-item/server-list-item.component';
 import { MyServersComponent } from './my-servers/my-servers.component';
@@ -22,6 +22,7 @@ import { FileDropModule } from 'ngx-file-drop/lib/ngx-drop';
 import { ServerComponent } from './server/server.component';
 import { VotePageComponent } from './vote-page/vote-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { QuillEditorModule } from 'ng2-quill-editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
     MdCheckboxModule, MdCardModule, routes, MdToolbarModule,
     ReactiveFormsModule, MdInputModule, MdDialogModule,
     MdSnackBarModule, MdSlideToggleModule, FileDropModule,
-    HttpClientModule
+    HttpClientModule, QuillEditorModule, FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent],

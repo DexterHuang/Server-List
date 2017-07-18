@@ -6,7 +6,7 @@
     </md-card-header>
     <img mdCardImage src={{server.logoURL}}>
     <md-card-content>
-      <p>{{server.description}}</p>
+      <div [innerHTML]="server.description"></div>
     </md-card-content>
     <md-card-actions *ngIf="canEdit()" align="end">
       <button md-raised-button color="primary" [routerLink]="['../myServers/editServer', {uid: server.uid}]">編輯</button>
