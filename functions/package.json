@@ -1,0 +1,19 @@
+{
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "firebase-admin": "~4.2.1",
+    "firebase-functions": "^0.5.7",
+    "typings": "^2.1.1"
+  },
+  "private": true,
+  "scripts": {
+    "start": "firebase serve --only functions",
+    "tsc": "tsc --watch",
+    "deploy": "firebase deploy --only functions"
+  },
+  "devDependencies": {
+    "ts-loader": "^2.3.0"
+  }
+}

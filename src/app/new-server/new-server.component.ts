@@ -43,6 +43,7 @@ export class NewServerComponent implements OnInit {
       server.onlineModeEnabled = form.onlineMode;
       const ref = firebase.database().ref('servers/').push();
       server.uid = ref.key;
+      server.token = MathHelper.getRandomUUID();
       server.ownerUid = User.getCurrentUser().uid;
       const upload = () => {
         ref.set(server).then(e => {

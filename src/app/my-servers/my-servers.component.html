@@ -6,5 +6,5 @@
 </md-toolbar>
 
 <md-card-content *ngIf="getCurrentUser()">
-  <app-server-list></app-server-list>
+  <app-server-list [onlyShowMyServer]="true"></app-server-list>
 </md-card-content>

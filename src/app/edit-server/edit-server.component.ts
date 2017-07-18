@@ -1,3 +1,4 @@
+import { MathHelper } from './../Ultility/MathHelper';
 import { InterfaceButton } from './../Model/InterfaceButton';
 import { CustomMdDialogComponent } from './../custom-md-dialog/custom-md-dialog.component';
 import { MdSnackBar, MdDialog } from '@angular/material';
@@ -28,15 +29,22 @@ export class EditServerComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      firebase.database().ref('servers/' + params['uid']).once('value', e => {
-        if (e.val()) {
-          this.server = new Server();
-          Object.assign(this.server, e.val());
-          this.formGroup.updateValueAndValidity()
-        } else {
-          this.router.navigate(['home'])
-        }
-      })
+      if (params['uid'] !== undefined) {
+        firebase.database().ref('servers/' + params['uid']).once('value', e => {
+          if (e.val()) {
+            this.server = new Server();
+            Object.assign(this.server, e.val());
+            if (this.server.token === undefined) {
+              this.server.token = MathHelper.getRandomUUID();
+            }
+            this.formGroup.updateValueAndValidity()
+          } else {
+            this.router.navigate(['home'])
+          }
+        })
+      } else {
+        this.router.navigate(['home'])
+      }
     })
   }
   onSubmit(form) {

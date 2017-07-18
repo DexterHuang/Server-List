@@ -20,6 +20,8 @@ import { EditServerComponent } from './edit-server/edit-server.component';
 import { CustomMdDialogComponent } from './custom-md-dialog/custom-md-dialog.component';
 import { FileDropModule } from 'ngx-file-drop/lib/ngx-drop';
 import { ServerComponent } from './server/server.component';
+import { VotePageComponent } from './vote-page/vote-page.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,13 +34,15 @@ import { ServerComponent } from './server/server.component';
     NewServerComponent,
     EditServerComponent,
     CustomMdDialogComponent,
-    ServerComponent
+    ServerComponent,
+    VotePageComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MdButtonModule,
     MdCheckboxModule, MdCardModule, routes, MdToolbarModule,
     ReactiveFormsModule, MdInputModule, MdDialogModule,
-    MdSnackBarModule, MdSlideToggleModule, FileDropModule
+    MdSnackBarModule, MdSlideToggleModule, FileDropModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

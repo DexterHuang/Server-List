@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="serverContainer">
+        <app-server *ngIf="server" [server]="server"></app-server>
+    </div>
+    <div class="voteContainer">
+        <md-card>
+            <md-card-header>
+                <md-card-title>嗨! {{playerName}}</md-card-title>
+                <md-card-subtitle>看到下面那個按鈕了嗎? 用力給他按下去就對了!</md-card-subtitle>
+            </md-card-header>
+            <md-card-actions align="start|end">
+                <button md-raised-button (click)="onClickLikeButton()" color="primary">讚!!</button>
+            </md-card-actions>
+        </md-card>
+    </div>
+</div>

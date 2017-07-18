@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    justify-content: flex-start;
+    margin: auto;
+}
+.voteContainer{
+    flex: 2;
+}
+.serverContainer{
+    flex: 3;
+}

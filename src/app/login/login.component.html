@@ -2,10 +2,9 @@
   <md-card>
     <md-card-header>
       <md-card-title>登入</md-card-title>
-      <md-card-subtitle>請輸入帳號密碼</md-card-subtitle>
     </md-card-header>
     <md-card-content>
-      <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+      <form *ngIf="useEmailLogin" [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
         <md-input-container floatPlaceholder="auto">
           <input mdInput formControlName="username" type="email" required placeholder="Email">
           <md-error>請輸入Email</md-error>
@@ -18,7 +17,7 @@
           <button md-button [disabled]="!formGroup.valid">Login</button>
         </md-card-actions>
       </form>
-      <button md-button (click)="siginWithGoogle()">Google</button>
+      <button class="googleButton" md-button (click)="siginWithGoogle()">Google</button>
     </md-card-content>
 
   </md-card>
