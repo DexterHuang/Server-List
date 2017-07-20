@@ -1,8 +1,16 @@
 <md-toolbar color="primary">
-  <button routerLink="./home" md-button>台灣創世神伺服器</button>
-  <button routerLink="./myServers" *ngIf="isLogin()" md-button>我的伺服器</button>
-  <button routerLink="./login" *ngIf="!isLogin()" md-button>登入</button>
-  <button (click)="logOut()" *ngIf="isLogin()" md-button>登出</button>
+  <button routerLink="./home" md-button>
+    <md-icon>home</md-icon>
+    台灣創世神伺服器</button>
+  <button routerLink="./myServers" *ngIf="isLogin()" md-button>
+    <md-icon>dashboard</md-icon>
+    我的伺服器</button>
+  <button routerLink="./login" *ngIf="!isLogin()" md-button>
+    <md-icon>account_box</md-icon>
+    登入</button>
+  <button (click)="logOut()" *ngIf="isLogin()" md-button>
+        <md-icon>account_box</md-icon>
+    登出</button>
   <span *ngIf="getCurrentUser()">{{getCurrentUser().displayName}}</span>
 
 </md-toolbar>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, EventEmitter } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { routes } from './app.router'
@@ -7,11 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {
   MdButtonModule, MdCheckboxModule, MdCardModule, MdToolbarModule,
   MdInputModule, MdDialogModule, MdSnackBarModule, MdSlideToggleModule,
+  MdProgressSpinnerModule, MdTooltipModule,
 } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
-import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ServerListComponent } from './server-list/server-list.component';
 import { ServerListItemComponent } from './server-list-item/server-list-item.component';
 import { MyServersComponent } from './my-servers/my-servers.component';
@@ -23,6 +24,11 @@ import { ServerComponent } from './server/server.component';
 import { VotePageComponent } from './vote-page/vote-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { QuillEditorModule } from 'ng2-quill-editor';
+import { ClipModule } from 'ng2-clip'
+import { MdIconModule } from '@angular/material';
+import { TextEditorComponent } from './text-editor/text-editor.component';
+import { TextViewerComponent } from './text-viewer/text-viewer.component';
+import { CopyStringAreaComponent } from './copy-string-area/copy-string-area.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +42,10 @@ import { QuillEditorModule } from 'ng2-quill-editor';
     EditServerComponent,
     CustomMdDialogComponent,
     ServerComponent,
-    VotePageComponent
+    VotePageComponent,
+    TextEditorComponent,
+    TextViewerComponent,
+    CopyStringAreaComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MdButtonModule,
@@ -44,6 +53,8 @@ import { QuillEditorModule } from 'ng2-quill-editor';
     ReactiveFormsModule, MdInputModule, MdDialogModule,
     MdSnackBarModule, MdSlideToggleModule, FileDropModule,
     HttpClientModule, QuillEditorModule, FormsModule,
+    ClipModule, MdIconModule, MdProgressSpinnerModule,
+    MdTooltipModule
 
   ],
   providers: [],

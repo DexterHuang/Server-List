@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  text = 'texthere';
   constructor() {
     const config = {
       apiKey: 'AIzaSyCo3B6hvOwlVqpFZ3DqUA4-RSmP1D3-3wg',

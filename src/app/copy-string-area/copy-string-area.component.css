@@ -1,0 +1,19 @@
+.myContainer{
+    max-height: 50px;
+    width: 200;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.copyButton{
+    min-width: 0;
+    min-height: 0;
+    line-height: 0;
+    padding: 0px 0px;
+    margin: auto;
+}
+md-icon{
+    font-size: 15px;
+    padding: 0px;
+    margin: auto;
+}

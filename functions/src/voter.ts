@@ -4,4 +4,5 @@ export class Voter {
     lastVotedServerUid: string;
     ip: string;
     userId: string;
+    recivedReward: boolean;
 }

@@ -16,6 +16,9 @@ export class VotePageComponent implements OnInit {
   server: Server;
   uid: string;
   playerName: string;
+  voteResult: string;
+  msg: string;
+  copyString: string;
   constructor(private http: HttpClient, private route: ActivatedRoute, private dialog: MdDialog) { }
   // server;uid=-KpFSUorX7N0DKUp7B8A;playerName=thunderbuddyted
   ngOnInit() {
@@ -27,7 +30,6 @@ export class VotePageComponent implements OnInit {
           if (e.exists()) {
             this.server = new Server();
             Object.assign(this.server, e.val())
-
           } else {
             const d = this.dialog.open(CustomMdDialogComponent);
             d.componentInstance.title = 'T ^ T';
@@ -42,20 +44,30 @@ export class VotePageComponent implements OnInit {
         }, 1);
       }
     })
-
+    setInterval(e => {
+      if (User.getCurrentUser()) {
+        this.copyString = '/iVoted ' + User.getCurrentUser().uid;
+      }
+    }, 200);
   }
   onClickLikeButton() {
     if (User.getCurrentUser()) {
       const url = 'https://us-central1-serverlist-362d5.cloudfunctions.net/vote';
       const local = 'http://localhost:5002/serverlist-362d5/us-central1/vote';
+      this.voteResult = 'waiting';
       this.http.post(url, {
         playerName: this.playerName,
         serverUid: this.server.uid,
         userId: User.getCurrentUser().uid
       }).subscribe(e => {
-        console.log(e)
+        console.log(e);
+        if (e['status'] === 'good') {
+          this.voteResult = 'voted'
+        } else {
+          this.voteResult = 'bad';
+          this.msg = e['message'];
+        }
       })
-      console.log('send something')
     } else {
       this.dialog.open(LoginComponent)
     }

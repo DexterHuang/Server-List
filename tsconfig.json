@@ -20,5 +20,10 @@
       "dom"
     ],
     "allowJs": true
-  }
+  },
+  "exclude": [
+    "bower_components",
+    "node_modules",
+    "functions"
+  ]
 }

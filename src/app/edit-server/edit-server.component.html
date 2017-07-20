@@ -17,8 +17,7 @@
 
         <md-checkbox [(ngModel)]="server.onlineModeEnabled" formControlName="onlineMode">有開啟正版認證</md-checkbox>
 
-        <quill-editor [(ngModel)]="server.description" formControlName="description"></quill-editor>
-
+        <app-text-editor [(text)]="server.description"></app-text-editor>
         <md-card-actions align="end">
           <button md-button type='button' (click)="onClickDelete()" color="alert">刪除</button>
           <button md-raised-button type='button' (click)="onClickPreview()" color="primary">預覽</button>

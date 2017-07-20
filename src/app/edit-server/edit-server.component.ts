@@ -23,7 +23,6 @@ export class EditServerComponent implements OnInit {
     this.formGroup = this.fb.group({
       serverName: ['', Validators.required],
       serverIP: ['', Validators.required],
-      description: ['', Validators.required],
       onlineMode: [false]
     })
   }
@@ -51,6 +50,7 @@ export class EditServerComponent implements OnInit {
   onSubmit(form) {
     firebase.database().ref('servers/' + this.server.uid).set(this.server).then(e => {
       this.snackBar.open('成功儲存!', null, { duration: 3000 });
+      this.router.navigate(['../server', { uid: this.server.uid }])
     })
   }
   onClickDelete() {

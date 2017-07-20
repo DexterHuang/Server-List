@@ -6,10 +6,26 @@
         <md-card>
             <md-card-header>
                 <md-card-title>嗨! {{playerName}}</md-card-title>
-                <md-card-subtitle>看到下面那個按鈕了嗎? 用力給他按下去就對了!</md-card-subtitle>
+                <md-card-subtitle *ngIf="!voteResult">看到下面那個按鈕了嗎? 用力給他按下去就對了!</md-card-subtitle>
             </md-card-header>
             <md-card-actions align="start|end">
-                <button md-raised-button (click)="onClickLikeButton()" color="primary">讚!!</button>
+                <button *ngIf="!voteResult" md-raised-button (click)="onClickLikeButton()" color="primary">讚!!</button>
+                <div class="waiting" *ngIf="voteResult == 'waiting'">
+                    <p>請稍等..正在努力思考中</p>
+                    <md-spinner></md-spinner>
+                </div>
+                <div *ngIf="voteResult === 'bad'">
+                    <p color="warn">{{msg}}</p>
+                </div>
+                <div *ngIf="voteResult === 'voted'">
+                    <p>成功點讚!</p>
+                </div>
+                <div *ngIf="copyString">
+
+                    <p>如果您以幫此伺服器點贊了, 請複製以下的指令在遊戲中貼上即可獲得獎勵(依照伺服器的設定)</p>
+                    <app-copy-string-area [string]="this.copyString"></app-copy-string-area>
+                </div>
+
             </md-card-actions>
         </md-card>
     </div>

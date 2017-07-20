@@ -9,3 +9,6 @@
 .serverContainer{
     flex: 3;
 }
+.waiting{
+    max-height: 50px;
+}

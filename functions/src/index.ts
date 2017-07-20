@@ -7,7 +7,7 @@ admin.initializeApp(functions.config().firebase);
 exports.ping = functions.https.onRequest((request, response) => {
     const ip = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
     request.setEncoding('utf8');
-    const recived = {
+    const recived: any = {
         lastPingTime: new Date().getTime(),
         IP: ip,
         port: request.param('port'),
@@ -19,7 +19,6 @@ exports.ping = functions.https.onRequest((request, response) => {
         uid: request.param('uid'),
         serverName: request.param('serverName'),
     };
-    console.log(recived.serverName);
     let ipString: string = ip + '';
     ipString = ipString.split('.').join('-');
 
@@ -82,10 +81,16 @@ exports.voteRequest = functions.https.onRequest((request, response) => {
             } else {
                 console.log(e.val())
                 response.send({ status: 'bad', message: '伺服器設定的ID和秘密代碼不正確!' })
+                return;
             }
+        }).catch(e => {
+            response.send({ status: 'bad', message: e.toString() });
+            return;
         })
+
     } else {
         response.send({ status: 'noToken', message: '伺服器好像沒有設定好秘密代碼以及伺服器ID呢!' });
+        return;
     }
 })
 const oneDay = 82800000;
@@ -105,15 +110,19 @@ exports.vote = functions.https.onRequest((request, response) => {
                     const diff = new Date().getTime() - voter.lastVotedTime;
                     if (diff > oneDay) {
                         canVote = true;
+                    } else {
+                        canVote = false;
                     }
                 } else {
                     canVote = true;
                 }
+                const IP: string = ip + '';
                 if (canVote) {
-                    voter.ip = ip;
+                    voter.ip = IP;
                     voter.lastVotedServerUid = serverUid;
                     voter.playerName = playerName;
                     voter.userId = userId;
+                    voter.recivedReward = false;
                     ref.set(voter).then(_ => {
                         response.send({ status: 'good' })
                     })
@@ -135,4 +144,35 @@ exports.vote = functions.https.onRequest((request, response) => {
         })
     })
 });
-
+exports.voteCheck = functions.https.onRequest((request, response) => {
+    const playerName = request.param('playerName');
+    const userId = request.param('userId');
+    const serverUid = request.param('serverUid');
+    const voterRef = admin.database().ref('voters/' + userId)
+    let error = '';
+    voterRef.once('value', e => {
+        if (e.exists()) {
+            const voter: Voter = new Voter();
+            Object.assign(voter, e.val());
+            if (voter.playerName === playerName) {
+                if (voter.lastVotedServerUid === serverUid) {
+                    if (!voter.recivedReward) {
+                        voter.recivedReward = true;
+                        voterRef.set(voter).then();
+                        response.send({ status: 'good' });
+                        return;
+                    } else {
+                        error = '您已經領取過獎勵了!';
+                    }
+                } else {
+                    error = '您並沒有幫此伺服器按讚@@';
+                }
+            } else {
+                error = '玩家名稱不正確';
+            }
+        } else {
+            error = '你還沒有按讚';
+        }
+        response.send({ status: 'bad', message: error })
+    })
+});
