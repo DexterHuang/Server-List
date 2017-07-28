@@ -1,0 +1,62 @@
+<div class="container">
+  <md-card>
+    <md-card-header>
+      <md-card-title>新增伺服器</md-card-title>
+      <md-card-subtitle>請輸您的伺服器資料</md-card-subtitle>
+    </md-card-header>
+    <md-card-content>
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+        <md-input-container floatPlaceholder="auto">
+          <input [(ngModel)]="server.serverName"
+            mdInput formControlName="serverName"
+            type="text" required
+            placeholder="伺服器名稱">
+          <md-error>請輸入伺服器名稱</md-error>
+        </md-input-container>
+        <md-input-container floatPlaceholder="auto">
+          <input mdInput [(ngModel)]="server.IP"
+            formControlName="serverIP"
+            type="text" required
+            placeholder="IP">
+          <md-error>請輸入IP</md-error>
+        </md-input-container>
+
+        <md-checkbox [(ngModel)]="server.onlineModeEnabled"
+          formControlName="onlineMode">有開啟正版認證</md-checkbox>
+        <br><label>伺服器Logo</label>
+        <img *ngIf="this.server.logoURL"
+          src="{{this.server.logoURL}}">
+        <file-drop *ngIf="!this.imageFile"
+          headertext="將伺服器Logo拉至此欄位"
+          (onFileDrop)="dropped($event)"
+          (onFileOver)="fileOver($event)"
+          (onFileLeave)="fileLeave($event)"></file-drop>
+        <div *ngIf="this.imageFile" class="imageContainer">
+          <div>
+            <img src="{{this.imageFile}}" alt="">
+          </div>
+        </div>
+
+        <md-chip-list class="tagList" [selectable]="true">
+          <md-chip *ngFor="let tag of selectableTags"
+            (click)="onSelect(tag)"
+            [selected]="server.tags.indexOf(tag.name)> -1">
+            {{tag.name}}
+          </md-chip>
+        </md-chip-list>
+
+        <app-text-editor [(text)]="server.description"></app-text-editor>
+        <md-card-actions align="end">
+          <button *ngIf="!isNew" md-button
+            type='button' (click)="onClickDelete()"
+            color="alert">刪除</button>
+          <button md-raised-button type='button'
+            (click)="onClickPreview()"
+            color="primary">預覽</button>
+          <button md-raised-button color="primary"
+            [disabled]="!formGroup.valid  || !server.description">確認</button>
+        </md-card-actions>
+      </form>
+    </md-card-content>
+  </md-card>
+</div>

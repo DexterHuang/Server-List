@@ -17,6 +17,7 @@ export class EditServerComponent implements OnInit {
   server: Server;
   formGroup: FormGroup;
   onlineMode = true;
+  saved = false;
   constructor(private fb: FormBuilder, public snackBar: MdSnackBar,
     private router: Router, private route: ActivatedRoute,
     private dialog: MdDialog) {
@@ -48,10 +49,14 @@ export class EditServerComponent implements OnInit {
     })
   }
   onSubmit(form) {
-    firebase.database().ref('servers/' + this.server.uid).set(this.server).then(e => {
-      this.snackBar.open('成功儲存!', null, { duration: 3000 });
-      this.router.navigate(['../server', { uid: this.server.uid }])
-    })
+    if (!this.saved) {
+      this.saved = true;
+      firebase.database().ref('servers/' + this.server.uid).set(this.server).then(e => {
+        this.snackBar.open('成功儲存!', null, { duration: 3000 });
+        this.router.navigate(['../server', { uid: this.server.uid }])
+      })
+    }
+
   }
   onClickDelete() {
     const dialog = this.dialog.open(CustomMdDialogComponent);

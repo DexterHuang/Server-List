@@ -18,9 +18,7 @@ export class EditTagsComponent implements OnInit {
       if (e.exists()) {
         Object.keys(e.val()).forEach(key => {
           const name = e.val()[key];
-          const tag: Tag = new Tag();
-          tag.key = key;
-          tag.name = name;
+          const tag: Tag = new Tag(key, name);
           this.tags.push(tag);
         })
       }

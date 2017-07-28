@@ -1,4 +1,5 @@
 export class Tag {
-    key: string;
-    name: string;
+    constructor(public key: string, public name: string) {
+
+    }
 }
