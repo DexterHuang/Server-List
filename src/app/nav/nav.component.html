@@ -11,6 +11,7 @@
   <button (click)="logOut()" *ngIf="isLogin()" md-button>
         <md-icon>account_box</md-icon>
     登出</button>
+  <button routerLink="./admin" *ngIf="getCurrentUser() && getCurrentUser().isAdmin()" md-button>Admin</button>
   <span *ngIf="getCurrentUser()">{{getCurrentUser().displayName}}</span>
 
 </md-toolbar>

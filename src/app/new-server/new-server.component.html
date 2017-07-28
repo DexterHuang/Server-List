@@ -24,6 +24,13 @@
             <img src="{{this.imageFile}}" alt="">
           </div>
         </div>
+
+        <md-select formControlName="tags" placeholder="">
+          <md-option *ngFor="let tag of selectableTags" [value]="choice">
+            tag
+          </md-option>
+        </md-select>
+
         <quill-editor class="form-control" formControlName="description">伺服器簡介</quill-editor>
 
         <md-card-actions align="end">

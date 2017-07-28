@@ -1,8 +1,15 @@
 <md-list-item *ngIf="server">
   <md-card color="accent">
-    <md-card-header>
-      <md-card-title class='title'>{{server.serverName}}</md-card-title>
-      <md-card-subtitle>{{server.IP}}</md-card-subtitle>
+    <md-card-header class="header">
+      <div class="left">
+        <md-card-title class='title'>{{server.serverName}}</md-card-title>
+        <md-card-subtitle>{{server.IP}}</md-card-subtitle>
+      </div>
+      <div class="right">
+        <button class="likeButton" md-button color="accent">
+          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+          讚!</button>
+      </div>
     </md-card-header>
     <img mdCardImage src={{server.logoURL}}>
     <md-card-content>

@@ -13,4 +13,5 @@ export class Server {
     testValue: string;
     token: string;
     lastPingTime: number;
+    tags: string[];
 }

@@ -1,6 +1,6 @@
 import { User } from './../Model/User';
 import { Server } from './../Model/Server';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as firebase from 'firebase';
 
 @Component({
@@ -8,12 +8,23 @@ import * as firebase from 'firebase';
   templateUrl: './server-list.component.html',
   styleUrls: ['./server-list.component.css']
 })
-export class ServerListComponent implements OnInit {
+export class ServerListComponent implements OnInit, OnChanges {
   allServers: Server[] = []
   normalServers: Server[] = [];
   pingServers: Server[] = [];
   @Input() onlyShowMyServer: boolean;
+  @Input() pageNumber: number;
 
+  serverPerPage = 10;
+  refreshPageNumber() {
+    this.allServers = [];
+    this.allServers = this.allServers.concat(this.normalServers, this.pingServers);
+    if (!this.onlyShowMyServer) {
+      const startIndex = (this.pageNumber - 1) * this.serverPerPage;
+      const endIndex = startIndex + 10;
+      this.allServers = this.allServers.slice(startIndex, endIndex);
+    }
+  }
   ngOnInit() {
     const addValueToServerList = (e, list: Server[]) => {
       const o = e.val();
@@ -25,10 +36,8 @@ export class ServerListComponent implements OnInit {
           list.push(server);
         })
       }
-      this.allServers = [];
-      this.allServers = this.allServers.concat(this.normalServers, this.pingServers);
+      this.refreshPageNumber();
     }
-    console.log(this.onlyShowMyServer)
     if (this.getCurrentUser() && this.onlyShowMyServer) {
       firebase.database().ref('servers').orderByChild('ownerUid').equalTo(this.getCurrentUser().uid).limitToFirst(100).on('value', e => {
         this.normalServers = []
@@ -52,5 +61,9 @@ export class ServerListComponent implements OnInit {
   }
   getCurrentUser() {
     return User.getCurrentUser();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+
+    this.refreshPageNumber();
   }
 }

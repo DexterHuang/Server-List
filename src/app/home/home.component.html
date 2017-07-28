@@ -1,1 +1,2 @@
-<app-server-list></app-server-list>
+<app-page-selector [(selectedPage)]="currentPage" (pageChanged)="onChange($event)"></app-page-selector>
+<app-server-list [pageNumber]="currentPage"></app-server-list>

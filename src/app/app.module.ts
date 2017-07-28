@@ -7,7 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {
   MdButtonModule, MdCheckboxModule, MdCardModule, MdToolbarModule,
   MdInputModule, MdDialogModule, MdSnackBarModule, MdSlideToggleModule,
-  MdProgressSpinnerModule, MdTooltipModule,
+  MdProgressSpinnerModule, MdTooltipModule, MdSelectModule,
+  MdChipsModule
+
 } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -29,6 +31,10 @@ import { MdIconModule } from '@angular/material';
 import { TextEditorComponent } from './text-editor/text-editor.component';
 import { TextViewerComponent } from './text-viewer/text-viewer.component';
 import { CopyStringAreaComponent } from './copy-string-area/copy-string-area.component'
+import { Angular2FontawesomeModule } from 'angular2-fontawesome';
+import { PageSelectorComponent } from './page-selector/page-selector.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { EditTagsComponent } from './admin-page/edit-tags/edit-tags.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +51,10 @@ import { CopyStringAreaComponent } from './copy-string-area/copy-string-area.com
     VotePageComponent,
     TextEditorComponent,
     TextViewerComponent,
-    CopyStringAreaComponent
+    CopyStringAreaComponent,
+    PageSelectorComponent,
+    AdminPageComponent,
+    EditTagsComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MdButtonModule,
@@ -54,7 +63,8 @@ import { CopyStringAreaComponent } from './copy-string-area/copy-string-area.com
     MdSnackBarModule, MdSlideToggleModule, FileDropModule,
     HttpClientModule, QuillEditorModule, FormsModule,
     ClipModule, MdIconModule, MdProgressSpinnerModule,
-    MdTooltipModule
+    MdTooltipModule, Angular2FontawesomeModule,
+    MdSelectModule, MdChipsModule
 
   ],
   providers: [],

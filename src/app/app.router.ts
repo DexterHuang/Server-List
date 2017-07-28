@@ -1,3 +1,4 @@
+import { AdminPageComponent } from './admin-page/admin-page.component';
 import { VotePageComponent } from './vote-page/vote-page.component';
 import { ServerComponent } from './server/server.component';
 import { EditServerComponent } from './edit-server/edit-server.component';
@@ -20,7 +21,8 @@ export const router: Routes = [
     { path: 'myServers/newServer', component: NewServerComponent },
     { path: 'myServers/editServer', component: EditServerComponent },
     { path: 'server', component: ServerComponent },
-    { path: 'vote', component: VotePageComponent }
+    { path: 'vote', component: VotePageComponent },
+    { path: 'admin', component: AdminPageComponent }
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router, { useHash: false });

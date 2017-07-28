@@ -34,4 +34,10 @@ export class User {
             return false;
         }
     }
+    public isAdmin(): boolean {
+        if (this.email === 'ching.huang.dexter@gmail.com') {
+            return true;
+        }
+        return false;
+    }
 }

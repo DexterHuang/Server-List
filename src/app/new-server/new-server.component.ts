@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { MathHelper } from './../Ultility/MathHelper';
 import { InterfaceButton } from './../Model/InterfaceButton';
 import { CustomMdDialogComponent } from './../custom-md-dialog/custom-md-dialog.component';
@@ -21,14 +22,19 @@ export class NewServerComponent implements OnInit {
   imageFile: UploadFile;
   imageBytes: File;
   description: string;
+  selectableTags: string[];
   constructor(private fb: FormBuilder, public snackBar: MdSnackBar,
     private router: Router, private dialog: MdDialog) {
     this.formGroup = this.fb.group({
       serverName: ['', Validators.required],
       serverIP: ['', Validators.required],
       description: ['', Validators.maxLength(3000)],
-      onlineMode: [false]
+      onlineMode: [false],
+      tags: [[], Validators.required]
     })
+    firebase.database().ref('tags/').once('value', e => {
+      console.log(e.numChildren())
+    });
   }
   onSubmit(form) {
     const sendMessage = (msg) => {

@@ -5,3 +5,21 @@
 .title{
     font-size: 30px;
 }
+.header{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.left{
+    align-self: flex-start;
+    flex: 1;
+}
+.right{
+    align-self: flex-start;
+    flex: 1;
+}
+.likeButton{
+    float: right;
+    margin: auto;
+    color: blue;
+}
