@@ -15,17 +15,10 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 })
 export class EditServerComponent implements OnInit {
   server: Server;
-  formGroup: FormGroup;
-  onlineMode = true;
   saved = false;
   constructor(private fb: FormBuilder, public snackBar: MdSnackBar,
     private router: Router, private route: ActivatedRoute,
     private dialog: MdDialog) {
-    this.formGroup = this.fb.group({
-      serverName: ['', Validators.required],
-      serverIP: ['', Validators.required],
-      onlineMode: [false]
-    })
   }
 
   ngOnInit() {
@@ -38,7 +31,6 @@ export class EditServerComponent implements OnInit {
             if (this.server.token === undefined) {
               this.server.token = MathHelper.getRandomUUID();
             }
-            this.formGroup.updateValueAndValidity()
           } else {
             this.router.navigate(['home'])
           }
@@ -47,34 +39,5 @@ export class EditServerComponent implements OnInit {
         this.router.navigate(['home'])
       }
     })
-  }
-  onSubmit(form) {
-    if (!this.saved) {
-      this.saved = true;
-      firebase.database().ref('servers/' + this.server.uid).set(this.server).then(e => {
-        this.snackBar.open('成功儲存!', null, { duration: 3000 });
-        this.router.navigate(['../server', { uid: this.server.uid }])
-      })
-    }
-
-  }
-  onClickDelete() {
-    const dialog = this.dialog.open(CustomMdDialogComponent);
-    dialog.componentInstance.message = '您確定要刪除此伺服器嗎??'
-    dialog.componentInstance.title = 'NANI??!';
-    dialog.componentInstance.buttons.push(new InterfaceButton('No! 我按錯了..'));
-    dialog.componentInstance.buttons.push(new InterfaceButton('確定', () => {
-      firebase.database().ref('servers/' + this.server.uid).remove().then(e => {
-        this.snackBar.open('刪除成功', undefined, {
-          duration: 3000
-        })
-        this.router.navigate(['../myServers'])
-      })
-    }));
-  }
-  onClickPreview() {
-    const dialog = this.dialog.open(ServerComponent).componentInstance;
-    dialog.server = this.server;
-    dialog.forceNoEdit = true;
   }
 }

@@ -32,10 +32,12 @@ export class ServerEditorComponent implements OnInit {
   constructor(private fb: FormBuilder, public snackBar: MdSnackBar,
     private router: Router, private dialog: MdDialog) {
     this.formGroup = this.fb.group({
-      serverName: ['', Validators.required],
+      serverName: ['', Validators.compose([Validators.minLength(2), Validators.maxLength(20)])],
       serverIP: ['', Validators.required],
       description: ['', Validators.maxLength(3000)],
-      onlineMode: [false]
+      onlineMode: [false],
+      title: ['', Validators.maxLength(50)],
+      RC: ['']
     })
     firebase.database().ref('tags/').once('value', e => {
       if (e.exists()) {

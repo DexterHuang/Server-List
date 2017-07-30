@@ -8,17 +8,34 @@
         </div>
         <div class="imageBox">
           <a [routerLink]="['../server', {uid: server.uid}]">
-          <img mdCardImage src={{server.logoURL}}>
+            <h2>{{server.title}}</h2>
+            <img class="logo" mdCardImage src={{server.logoURL}}>
           </a>
         </div>
         <div class="pingBox">
+          <i class="fa fa-signal" aria-hidden="true"></i>
           <p>{{ping}}</p>
+        </div>
+        <div>
+          <i class="fa fa-gamepad" aria-hidden="true"></i>
+          <p>{{ server.currentPlayer
+            + '/'+ server.maxPlayer}}</p>
         </div>
       </div>
     </md-card-content>
-    <md-card-footer>
-      <app-copy-string-area [string]="server.IP"></app-copy-string-area>
-      <span *ngIf="server.port && server.port !== 25565">:{{server.port}}</span>
+    <md-card-footer class="footer">
+      <div class="ip">
+        <app-copy-string-area [string]="server.IP"></app-copy-string-area>
+        <span *ngIf="server.port && server.port !== 25565">:{{server.port}}</span>
+
+      </div>
+
+      <div class="spacer"></div>
+      <div class="onlineMode">
+        <app-online-mode-display [onlineMode]="server.onlineMode"></app-online-mode-display>
+      </div>
+
+
     </md-card-footer>
   </md-card>
 </md-list-item>

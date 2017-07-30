@@ -35,7 +35,8 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome';
 import { PageSelectorComponent } from './page-selector/page-selector.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { EditTagsComponent } from './admin-page/edit-tags/edit-tags.component';
-import { ServerEditorComponent } from './new-server/server-editor/server-editor.component'
+import { ServerEditorComponent } from './new-server/server-editor/server-editor.component';
+import { OnlineModeDisplayComponent } from './Ultility/online-mode-display/online-mode-display.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { ServerEditorComponent } from './new-server/server-editor/server-editor.
     PageSelectorComponent,
     AdminPageComponent,
     EditTagsComponent,
-    ServerEditorComponent
+    ServerEditorComponent,
+    OnlineModeDisplayComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MdButtonModule,

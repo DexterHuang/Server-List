@@ -14,4 +14,6 @@ export class Server {
     token: string;
     lastPingTime: number;
     tags: string[] = [];
+    title: string;
+    RC: string;
 }

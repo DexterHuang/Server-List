@@ -5,22 +5,33 @@
         <md-card-title class='title'>{{server.serverName}}</md-card-title>
         <md-card-subtitle>{{server.IP}}</md-card-subtitle>
       </div>
+      <div>
+        <app-online-mode-display></app-online-mode-display>
+      </div>
       <div class="right">
-        <button class="likeButton" md-button color="accent">
+        <button (click)="onClickVote()"
+          class="likeButton" md-button
+          color="accent">
           <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
           讚!</button>
       </div>
     </md-card-header>
-    <img mdCardImage src={{server.logoURL}}>
+    <img class="logo" mdCardImage src={{server.logoURL}}>
     <md-card-content>
 
     </md-card-content>
-    <app-text-viewer class="description" [(text)]="server.description"></app-text-viewer>
-    <md-card-actions *ngIf="canEdit()" align="end">
-      <button md-raised-button color="primary" [routerLink]="['../myServers/editServer', {uid: server.uid}]">編輯</button>
+    <app-text-viewer class="description"
+      [(text)]="server.description"></app-text-viewer>
+    <md-card-actions align="end">
+      <button *ngIf="canEdit()" md-raised-button
+        color="primary" [routerLink]="['../myServers/editServer', {uid: server.uid}]">編輯</button>
     </md-card-actions>
-    <md-card-footer *ngIf="canEdit()">
-      <p class='footer'>在伺服器中打<br>{{command}}</p>
+    <md-card-footer class="footer"
+      *ngIf="canEdit()">
+      <app-copy-string-area [string]="command">
+      </app-copy-string-area>
+
     </md-card-footer>
+
   </md-card>
 </md-list-item>

@@ -1,3 +1,5 @@
+import { CustomMdDialogComponent } from './../custom-md-dialog/custom-md-dialog.component';
+import { MdDialog } from '@angular/material';
 import { User } from './../Model/User';
 import { Server } from './../Model/Server';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,7 +14,9 @@ export class ServerComponent implements OnInit {
   @Input() server: Server = undefined;
   command: string
   forceNoEdit = false;
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    private dialog: MdDialog) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -41,5 +45,9 @@ export class ServerComponent implements OnInit {
     }
     return false;
   }
-
+  onClickVote() {
+    const dialog = this.dialog.open(CustomMdDialogComponent).componentInstance;
+    dialog.title = ':D';
+    dialog.message = '要按讚的話必須要登入伺服器然後打/twVote喔!';
+  }
 }
