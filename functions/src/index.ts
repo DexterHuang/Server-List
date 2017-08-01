@@ -42,9 +42,9 @@ exports.ping = functions.https.onRequest((request, response) => {
             if (e.exists) {
                 const server = e.val();
                 if (server.token === recived.token) {
-                    server.currentPlayer = recived.currentPlayers;
+                    server.currentPlayers = recived.currentPlayers;
                     server.lastPingTime = recived.lastPingTime;
-                    server.maxPlayer = recived.maxPlayers;
+                    server.maxPlayers = recived.maxPlayers;
                     server.testValue = recived.testValue;
                     admin.database().ref('servers').child(recived.uid).set(server).then(d => {
                         response.send({ status: 'good', message: 'registered' })
@@ -102,12 +102,13 @@ exports.vote = functions.https.onRequest((request, response) => {
             const playerName = request.body['playerName'];
             const ip = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
             const ref = admin.database().ref('voters/' + userId);
+            let diff = 0;
             ref.once('value', e => {
                 let canVote = false;
                 const voter: Voter = new Voter();
                 if (e.exists()) {
                     Object.assign(voter, e.val());
-                    const diff = new Date().getTime() - voter.lastVotedTime;
+                    diff = new Date().getTime() - voter.lastVotedTime;
                     if (diff > oneDay) {
                         canVote = true;
                     } else {
@@ -123,6 +124,7 @@ exports.vote = functions.https.onRequest((request, response) => {
                     voter.playerName = playerName;
                     voter.userId = userId;
                     voter.recivedReward = false;
+                    voter.lastVotedTime = new Date().getTime();
                     ref.set(voter).then(_ => {
                         response.send({ status: 'good' })
                     })
@@ -134,9 +136,10 @@ exports.vote = functions.https.onRequest((request, response) => {
                         }
                         likes += 1;
                         likeRef.set(likes).then();
+                        admin.database().ref('servers/' + serverUid + '/likes').set(likes).then();
                     })
                 } else {
-                    response.send({ status: 'bad', message: '你今天已經按過讚了喔~每天只能按一次讚' })
+                    response.send({ status: 'bad', message: '你今天已經按過讚了喔~每天只能按一次讚', diff: diff })
                 }
             })
         }).catch(e => {

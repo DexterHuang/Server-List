@@ -5,20 +5,15 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ]
-    // "redirects": [
-    //   {
-    //     "source": "/*",
-    //     "destination": "/",
-    //     "type": 301
-    //   }
-    // ]
-    ,
+    ],
     "rewrites": [
       {
         "source": "**",
         "destination": "/index.html"
       }
     ]
+  },
+  "database": {
+    "rules": "database-rules.json"
   }
 }

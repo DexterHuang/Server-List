@@ -36,7 +36,9 @@ import { PageSelectorComponent } from './page-selector/page-selector.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { EditTagsComponent } from './admin-page/edit-tags/edit-tags.component';
 import { ServerEditorComponent } from './new-server/server-editor/server-editor.component';
-import { OnlineModeDisplayComponent } from './Ultility/online-mode-display/online-mode-display.component'
+import { OnlineModeDisplayComponent } from './Ultility/online-mode-display/online-mode-display.component';
+import { EditGameVersionsComponent } from './admin-page/edit-game-versions/edit-game-versions.component';
+import { BannerComponent } from './server/banner/banner.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +60,9 @@ import { OnlineModeDisplayComponent } from './Ultility/online-mode-display/onlin
     AdminPageComponent,
     EditTagsComponent,
     ServerEditorComponent,
-    OnlineModeDisplayComponent
+    OnlineModeDisplayComponent,
+    EditGameVersionsComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MdButtonModule,

@@ -29,6 +29,7 @@ export class ServerListComponent implements OnInit, OnChanges {
     const addValueToServerList = (e, list: Server[]) => {
       const o = e.val();
       if (o) {
+        console.log('hue')
         Object.keys(o).forEach(key => {
           const s = o[key];
           const server: Server = new Server();
@@ -39,20 +40,18 @@ export class ServerListComponent implements OnInit, OnChanges {
       this.refreshPageNumber();
     }
     if (this.getCurrentUser() && this.onlyShowMyServer) {
-      firebase.database().ref('servers').orderByChild('ownerUid').equalTo(this.getCurrentUser().uid).limitToFirst(100).on('value', e => {
+      firebase.database().ref('servers').orderByChild('ownerUid').equalTo(this.getCurrentUser().uid).limitToFirst(100).once('value', e => {
         this.normalServers = []
         addValueToServerList(e, this.normalServers);
       });
     } else {
-      firebase.database().ref('servers').on('value', e => {
+      firebase.database().ref('servers').once('value', e => {
         this.normalServers = []
         addValueToServerList(e, this.normalServers);
       })
       const limit = 11 * 60 * 1000
-      console.log(new Date().getTime() - limit, 1500293853384)
-      console.log(new Date().getTime() - limit < 1500293853384)
       firebase.database().ref('pingServers').orderByChild('lastPingTime').
-        startAt(new Date().getTime() - limit).on('value', e => {
+        startAt(new Date().getTime() - limit).once('value', e => {
           this.pingServers = []
           addValueToServerList(e, this.pingServers);
         })

@@ -1,3 +1,4 @@
+import { GameVersion } from './../../Model/GameVersion';
 import { Tag } from './../../Model/Tag';
 import { ServerComponent } from './../../server/server.component';
 import { element } from 'protractor';
@@ -29,6 +30,7 @@ export class ServerEditorComponent implements OnInit {
   imageBytes: File;
   description: string;
   selectableTags: Tag[];
+  gameVersions: GameVersion[];
   constructor(private fb: FormBuilder, public snackBar: MdSnackBar,
     private router: Router, private dialog: MdDialog) {
     this.formGroup = this.fb.group({
@@ -49,6 +51,16 @@ export class ServerEditorComponent implements OnInit {
         })
       }
     });
+    firebase.database().ref('gameVersions/').once('value', e => {
+      if (e.exists()) {
+        this.gameVersions = [];
+        const o = e.val();
+        Object.keys(o).forEach(key => {
+          const name = o[key].versionName;
+          this.gameVersions.push(new GameVersion(name, key))
+        })
+      }
+    })
   }
   ngOnInit() {
     this.server = this.inputServer;
@@ -165,5 +177,8 @@ export class ServerEditorComponent implements OnInit {
         this.router.navigate(['../myServers'])
       })
     }));
+  }
+  onSelectGameVersion(e) {
+    this.server.gameVersion = e.value
   }
 }

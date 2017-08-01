@@ -21,19 +21,31 @@
           <md-error>請輸入IP</md-error>
         </md-input-container>
 
+        <md-select placeholder="伺服器版本"
+          (change)="onSelectGameVersion($event)"
+          required>
+          <md-option *ngFor="let v of gameVersions"
+            [value]="v.versionName">
+            {{v.versionName}}
+          </md-option>
+        </md-select>
+
         <md-input-container floatPlaceholder="auto">
           <input mdInput [(ngModel)]="server.RC"
             formControlName="RC"
             type="text" placeholder="RC">
-          <md-error>請輸入IP</md-error>
         </md-input-container>
 
         <md-checkbox [(ngModel)]="server.onlineModeEnabled"
           formControlName="onlineMode">有開啟正版認證</md-checkbox>
         <br><label>伺服器Logo</label>
-        <img *ngIf="this.server.logoURL"
-          src="{{this.server.logoURL}}">
-        <file-drop *ngIf="!this.imageFile"
+        <app-banner [server]="server"></app-banner>
+        <md-input-container floatPlaceholder="auto">
+          <input mdInput [(ngModel)]="server.logoURL"
+            formControlName="serverIP"
+            type="text" placeholder="logoURL網址">
+        </md-input-container>
+        <!-- <file-drop *ngIf="!this.imageFile"
           headertext="將伺服器Logo拉至此欄位"
           (onFileDrop)="dropped($event)"
           (onFileOver)="fileOver($event)"
@@ -42,13 +54,11 @@
           <div>
             <img src="{{this.imageFile}}" alt="">
           </div>
-        </div>
+        </div> -->
         <md-input-container floatPlaceholder="auto">
           <input mdInput [(ngModel)]="server.title"
             formControlName="title"
-            type="text" required
-            placeholder="伺服器標題">
-          <md-error>請輸入標題</md-error>
+            type="text" placeholder="伺服器標題">
         </md-input-container>
 
         <md-chip-list class="tagList" [selectable]="true">

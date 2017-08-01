@@ -1,0 +1,10 @@
+{
+    "rules": {
+        "likes": {
+            ".read": true,
+            ".write": false
+        },
+        ".read": "auth != ''",
+        ".write": "auth != null"
+    }
+}

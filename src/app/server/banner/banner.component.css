@@ -1,0 +1,24 @@
+.imageBox{
+    height: 100px;
+    height: 90px;
+    max-width: 728px;
+    max-height: 90px;
+    overflow: hidden;
+    width: auto;
+    margin: auto;
+}
+.imageBox img{
+    object-fit: cover;
+    margin: auto;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.imageBox h2{
+    position: absolute;
+    margin: 15px;
+    margin-top: 10px;
+    color: #212121;
+    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+}

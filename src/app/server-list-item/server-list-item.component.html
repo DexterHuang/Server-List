@@ -4,29 +4,36 @@
       <div class="container">
         <div class="titleBox">
           <h3>{{server.serverName}}</h3>
-          <h3 *ngIf="!server.serverName">創世神伺服器</h3>
         </div>
-        <div class="imageBox">
-          <a [routerLink]="['../server', {uid: server.uid}]">
-            <h2>{{server.title}}</h2>
-            <img class="logo" mdCardImage src={{server.logoURL}}>
-          </a>
+        <app-banner class="imageBox" [server]="server">
+        </app-banner>
+        <div class="rightBox">
+          <div class="ping">
+            <p><i class="fa fa-signal"
+                aria-hidden="true"></i><br>{{ping}}</p>
+          </div>
+          <div class="player">
+
+            <p><i class="fa fa-gamepad"
+                aria-hidden="true"></i><br>{{
+              server.currentPlayers
+              + '/'+ server.maxPlayers}}</p>
+          </div>
+          <div class="likes">
+
+            <p><i class="fa fa-thumbs-o-up"
+                aria-hidden="true"></i><br>{{server.likes}}</p>
+          </div>
         </div>
-        <div class="pingBox">
-          <i class="fa fa-signal" aria-hidden="true"></i>
-          <p>{{ping}}</p>
-        </div>
-        <div>
-          <i class="fa fa-gamepad" aria-hidden="true"></i>
-          <p>{{ server.currentPlayer
-            + '/'+ server.maxPlayer}}</p>
-        </div>
+
       </div>
     </md-card-content>
     <md-card-footer class="footer">
       <div class="ip">
-        <app-copy-string-area [string]="server.IP"></app-copy-string-area>
-        <span *ngIf="server.port && server.port !== 25565">:{{server.port}}</span>
+        <app-copy-string-area *ngIf="!(server.port && server.port !== 25565)"
+          [string]="server.IP"></app-copy-string-area>
+        <app-copy-string-area *ngIf="server.port && server.port !== 25565"
+          [string]="server.IP + ':' + server.port"></app-copy-string-area>
 
       </div>
 
