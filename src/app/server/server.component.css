@@ -14,11 +14,20 @@
     flex: 1;
 }
 .right{
-    align-self: flex-start;
     flex: 1;
+    flex-direction: row;
+    display: flex;
 }
 .likeButton{
-    float: right;
-    margin: auto;
-    color: blue;
+    flex: 1;
+    height: 30px;
+    align-self: center;
+}
+.onlineMode{
+    flex: 4;
+    align-self: center;
+}
+.detail{
+    flex: 6;
+    align-self: center;
 }

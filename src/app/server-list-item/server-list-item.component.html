@@ -8,27 +8,12 @@
         <app-banner class="imageBox" [server]="server">
         </app-banner>
         <div class="rightBox">
-          <div class="ping">
-            <p><i class="fa fa-signal"
-                aria-hidden="true"></i><br>{{ping}}</p>
-          </div>
-          <div class="player">
-
-            <p><i class="fa fa-gamepad"
-                aria-hidden="true"></i><br>{{
-              server.currentPlayers
-              + '/'+ server.maxPlayers}}</p>
-          </div>
-          <div class="likes">
-
-            <p><i class="fa fa-thumbs-o-up"
-                aria-hidden="true"></i><br>{{server.likes}}</p>
-          </div>
+          <app-server-detail [server]="server"></app-server-detail>
         </div>
 
       </div>
     </md-card-content>
-    <md-card-footer class="footer">
+    <div class="footer">
       <div class="ip">
         <app-copy-string-area *ngIf="!(server.port && server.port !== 25565)"
           [string]="server.IP"></app-copy-string-area>
@@ -37,12 +22,17 @@
 
       </div>
 
-      <div class="spacer"></div>
-      <div class="onlineMode">
-        <app-online-mode-display [onlineMode]="server.onlineMode"></app-online-mode-display>
+      <div class="spacer">
+        <md-chip-list>
+          <md-chip *ngFor="let tag of server.tags"
+            [selected]=true>
+            {{tag}}
+          </md-chip>
+        </md-chip-list>
       </div>
-
-
-    </md-card-footer>
+      <div class="onlineMode">
+        <app-online-mode-display [onlineMode]="server.onlineModeEnabled"></app-online-mode-display>
+      </div>
+    </div>
   </md-card>
 </md-list-item>

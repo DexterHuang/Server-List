@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="ping">
+    <p><i class="fa fa-signal" aria-hidden="true"></i><br>{{ping}}</p>
+  </div>
+  <div class="player">
+
+    <p><i class="fa fa-gamepad" aria-hidden="true"></i><br>{{
+      server.currentPlayers + '/'+
+      server.maxPlayers}}
+    </p>
+  </div>
+  <div class="likes">
+    <p><i class="fa fa-thumbs-o-up"
+        aria-hidden="true"></i><br>{{server.likes}}</p>
+  </div>
+</div>

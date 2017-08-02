@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+}
+.ping{
+    flex: 1;
+}
+.player{
+    flex: 1;
+}
+.likes{
+    flex: 1;
+}

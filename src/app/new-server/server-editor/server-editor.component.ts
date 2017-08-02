@@ -39,6 +39,7 @@ export class ServerEditorComponent implements OnInit {
       description: ['', Validators.maxLength(3000)],
       onlineMode: [false],
       title: ['', Validators.maxLength(50)],
+      logoURL: ['', Validators.required],
       RC: ['']
     })
     firebase.database().ref('tags/').once('value', e => {

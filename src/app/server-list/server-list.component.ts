@@ -23,6 +23,14 @@ export class ServerListComponent implements OnInit, OnChanges {
       const startIndex = (this.pageNumber - 1) * this.serverPerPage;
       const endIndex = startIndex + 10;
       this.allServers = this.allServers.slice(startIndex, endIndex);
+      const compare = (a: Server, b: Server) => {
+        if (a.likes < b.likes) {
+          return 1;
+        } else {
+          return -1;
+        }
+      }
+      this.allServers.sort(compare);
     }
   }
   ngOnInit() {
@@ -40,10 +48,11 @@ export class ServerListComponent implements OnInit, OnChanges {
       this.refreshPageNumber();
     }
     if (this.getCurrentUser() && this.onlyShowMyServer) {
-      firebase.database().ref('servers').orderByChild('ownerUid').equalTo(this.getCurrentUser().uid).limitToFirst(100).once('value', e => {
-        this.normalServers = []
-        addValueToServerList(e, this.normalServers);
-      });
+      firebase.database().ref('servers').orderByChild('ownerUid').equalTo(this.getCurrentUser().uid)
+        .limitToFirst(100).once('value', e => {
+          this.normalServers = []
+          addValueToServerList(e, this.normalServers);
+        });
     } else {
       firebase.database().ref('servers').once('value', e => {
         this.normalServers = []

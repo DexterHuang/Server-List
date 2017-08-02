@@ -1,14 +1,12 @@
 .imageBox{
-    height: 100px;
-    height: 90px;
-    max-width: 728px;
-    max-height: 90px;
     overflow: hidden;
     width: auto;
     margin: auto;
+    max-height: 90px;
+    max-width: 728px;
 }
 .imageBox img{
-    object-fit: cover;
+    object-fit: contain;
     margin: auto;
     border-radius: 3px;
     overflow: hidden;

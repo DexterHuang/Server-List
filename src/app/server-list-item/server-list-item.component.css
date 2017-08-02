@@ -6,28 +6,14 @@
 }
 .rightBox{
     flex: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
 }
-.ping{
-    flex: 1;
-}
-.player{
-    flex: 1;
-}
-.likes{
-    flex: 1;
-}
+
 .container{
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-md-card-footer{
-    margin: 20px;
+    min-height: 90px;
 }
 .footer{
     display: flex;
@@ -35,16 +21,23 @@ md-card-footer{
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin: auto;
+    min-height: 30px;
 }
 .ip{
     text-align: left;
     margin-left: 10px;
-    flex: 4;
+    flex: 2;
 }
 .spacer{
-    flex: 4;
+    flex: 6;
 }
 .onlineMode{
     flex: 2;
+}
+md-card-content{
+    margin-bottom: 0px;
+}
+md-card{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }

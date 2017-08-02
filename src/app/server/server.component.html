@@ -3,17 +3,25 @@
     <md-card-header class="header">
       <div class="left">
         <md-card-title class='title'>{{server.serverName}}</md-card-title>
-        <md-card-subtitle>{{server.IP}}</md-card-subtitle>
+        <md-card-subtitle>
+          {{server.IP}}
+        </md-card-subtitle>
       </div>
       <div>
-        <app-online-mode-display></app-online-mode-display>
+
       </div>
       <div class="right">
+        <app-server-detail [server]="server"
+          class="detail"></app-server-detail>
+        <app-online-mode-display [onlineMode]="server.onlineModeEnabled"
+          class="onlineMode"></app-online-mode-display>
+
         <button (click)="onClickVote()"
           class="likeButton" md-button
           color="accent">
           <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
           讚!</button>
+
       </div>
     </md-card-header>
     <app-banner [server]="server"></app-banner>
