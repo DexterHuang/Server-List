@@ -171,7 +171,8 @@ export class ServerEditorComponent implements OnInit {
     dialog.componentInstance.title = 'NANI??!';
     dialog.componentInstance.buttons.push(new InterfaceButton('No! 我按錯了..'));
     dialog.componentInstance.buttons.push(new InterfaceButton('確定', () => {
-      firebase.database().ref('servers/' + this.server.uid).remove().then(e => {
+      const ref = firebase.database().ref('servers/' + this.server.uid + '');
+      ref.remove().then(e => {
         this.snackBar.open('刪除成功', undefined, {
           duration: 3000
         })

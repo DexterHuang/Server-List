@@ -1,5 +1,6 @@
 .container{
     display: flex;
+    text-align: center;
 }
 .ping{
     flex: 1;
@@ -8,5 +9,8 @@
     flex: 1;
 }
 .likes{
+    flex: 1;
+}
+.version{
     flex: 1;
 }

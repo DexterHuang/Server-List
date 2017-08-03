@@ -19,4 +19,6 @@ export class Server {
     website: string;
     gameVersion = '1.12'
     likes = 0;
+    createdDate: Date;
+    lastLikeDate: Date;
 }

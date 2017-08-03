@@ -1,0 +1,8 @@
+<div>
+  <md-chip-list>
+    <md-chip (click)="onSelect(tag)"
+      *ngFor="let tag of tags" [selected]="isTagSelected(tag)">
+      {{tag.name}}
+    </md-chip>
+  </md-chip-list>
+</div>

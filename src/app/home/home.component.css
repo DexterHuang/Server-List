@@ -1,0 +1,19 @@
+md-card{
+    text-align: center;
+    margin-top: 0px;
+}
+.tagFilter{
+    margin: 10px;
+    text-align: center;
+}
+.bottomBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.checkBoxes{
+    flex: 1;
+}
+.sortMethod{
+    flex: 1;
+}

@@ -1,2 +1,24 @@
-<app-page-selector [(selectedPage)]="currentPage" (pageChanged)="onChange($event)"></app-page-selector>
-<app-server-list [pageNumber]="currentPage"></app-server-list>
+<md-card>
+    <md-card-header>
+        <md-card-title>第{{currentPage}}頁</md-card-title>
+    </md-card-header>
+    <md-card-content>
+        <app-page-selector [(selectedPage)]="currentPage"
+            (pageChanged)="onChange($event)"></app-page-selector>
+        <div class="tagFilter">
+            <app-tag-filter (onTagChange)="onTagChange($event)"></app-tag-filter>
+        </div>
+        <div class="bottomBox">
+            <div class="checkBoxes">
+                <md-checkbox color="primary" (change)="filterOnlineModeEnabledChange($event)">正版驗證</md-checkbox>
+                <md-checkbox color="primary" (change)="filterOnlineModeDisabledCahneg($event)">無正版驗證</md-checkbox>
+            </div>
+            <div class="sortMethod">
+                <app-sort-method-selector (onMethodChange)="onSortMethodChange($event)"></app-sort-method-selector>
+            </div>
+
+        </div>
+    </md-card-content>
+</md-card>
+
+<app-server-list [servers]="allServers"></app-server-list>

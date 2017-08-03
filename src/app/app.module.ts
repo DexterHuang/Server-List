@@ -32,14 +32,17 @@ import { TextEditorComponent } from './text-editor/text-editor.component';
 import { TextViewerComponent } from './text-viewer/text-viewer.component';
 import { CopyStringAreaComponent } from './copy-string-area/copy-string-area.component'
 import { Angular2FontawesomeModule } from 'angular2-fontawesome';
-import { PageSelectorComponent } from './page-selector/page-selector.component';
+import { PageSelectorComponent } from './home/page-selector/page-selector.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { EditTagsComponent } from './admin-page/edit-tags/edit-tags.component';
 import { ServerEditorComponent } from './new-server/server-editor/server-editor.component';
 import { OnlineModeDisplayComponent } from './Ultility/online-mode-display/online-mode-display.component';
 import { EditGameVersionsComponent } from './admin-page/edit-game-versions/edit-game-versions.component';
 import { BannerComponent } from './server/banner/banner.component';
-import { ServerDetailComponent } from './server/server-detail/server-detail.component'
+import { ServerDetailComponent } from './server/server-detail/server-detail.component';
+
+import { TagFilterComponent } from './home/tag-filter/tag-filter.component';
+import { SortMethodSelectorComponent } from './home/sort-method-selector/sort-method-selector.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +67,9 @@ import { ServerDetailComponent } from './server/server-detail/server-detail.comp
     OnlineModeDisplayComponent,
     EditGameVersionsComponent,
     BannerComponent,
-    ServerDetailComponent
+    ServerDetailComponent,
+    TagFilterComponent,
+    SortMethodSelectorComponent
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MdButtonModule,

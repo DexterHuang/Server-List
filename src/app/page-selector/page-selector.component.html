@@ -1,8 +1,0 @@
-<md-card class="container">
-  <md-card-header>
-    <md-card-title>第{{selectedPage}}頁</md-card-title>
-  </md-card-header>
-  <span *ngFor="let number of this.showingNumbers" (click)="onClick(number)">
-    <button class="numberBox" md-raised-button>{{number}}</button>
-  </span>
-</md-card>

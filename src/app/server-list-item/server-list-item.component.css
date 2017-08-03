@@ -21,7 +21,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    min-height: 30px;
+    height: 35px;
 }
 .ip{
     text-align: left;
@@ -40,4 +40,5 @@ md-card-content{
 md-card{
     margin-bottom: 0px;
     padding-bottom: 0px;
+    padding-top: 5px;
 }

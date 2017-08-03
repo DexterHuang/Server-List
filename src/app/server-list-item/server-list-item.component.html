@@ -4,6 +4,12 @@
       <div class="container">
         <div class="titleBox">
           <h3>{{server.serverName}}</h3>
+          <div class="ip">
+            <app-copy-string-area *ngIf="!(server.port && server.port !== 25565)"
+              [string]="server.IP"></app-copy-string-area>
+            <app-copy-string-area *ngIf="server.port && server.port !== 25565"
+              [string]="server.IP + ':' + server.port"></app-copy-string-area>
+          </div>
         </div>
         <app-banner class="imageBox" [server]="server">
         </app-banner>
@@ -14,14 +20,6 @@
       </div>
     </md-card-content>
     <div class="footer">
-      <div class="ip">
-        <app-copy-string-area *ngIf="!(server.port && server.port !== 25565)"
-          [string]="server.IP"></app-copy-string-area>
-        <app-copy-string-area *ngIf="server.port && server.port !== 25565"
-          [string]="server.IP + ':' + server.port"></app-copy-string-area>
-
-      </div>
-
       <div class="spacer">
         <md-chip-list>
           <md-chip *ngFor="let tag of server.tags"
