@@ -1,0 +1,22 @@
+<h1>感謝您的寶貴意見</h1>
+<form *ngIf="!submitted" [formGroup]="formGroup"
+  (ngSubmit)="onSubmit(formGroup.value)">
+  <md-input-container>
+    <input mdInput formControlName="email"
+      type="email" placeholder="Email">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput formControlName="title"
+      type="text" placeholder="標題"
+      required>
+  </md-input-container>
+  <md-input-container>
+    <textarea mdInput mdTextareaAutosize
+      formControlName="body" required
+      placeholder="回報內容"></textarea>
+  </md-input-container>
+  <button md-raised-button color="primary"
+    [disabled]="!formGroup.valid">確認</button>
+</form>
+
+<h2 *ngIf="submitted">意見已成功上傳! 謝謝~</h2>

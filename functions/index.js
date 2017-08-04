@@ -4,6 +4,9 @@ const voter_1 = require("./voter");
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 const cors = require('cors')({ origin: true });
+const currentVersion = '0.1.1';
+// tslint:disable-next-line:max-line-length
+const downloadUrl = 'https://firebasestorage.googleapis.com/v0/b/serverlist-362d5.appspot.com/o/plugin%2FServerList.jar?alt=media&token=24d89baa-6af0-46ce-9b35-eec214ae8f22';
 admin.initializeApp(functions.config().firebase);
 exports.ping = functions.https.onRequest((request, response) => {
     const ip = request.headers['x-forwarded-for'] || request.connection.remoteAddress;
@@ -34,7 +37,10 @@ exports.ping = functions.https.onRequest((request, response) => {
         }).catch(e => {
             console.error(e);
         });
-        response.send({ status: 'good', message: 'not registered' });
+        response.send({
+            status: 'good', message: 'not registered',
+            latestVersion: currentVersion, downloadUrl: downloadUrl
+        });
     }
     else {
         // REGISTERED
@@ -47,22 +53,34 @@ exports.ping = functions.https.onRequest((request, response) => {
                     server.maxPlayers = recived.maxPlayers;
                     server.testValue = recived.testValue;
                     admin.database().ref('servers').child(recived.uid).set(server).then(d => {
-                        response.send({ status: 'good', message: 'registered' });
+                        response.send({
+                            status: 'good', message: 'registered',
+                            latestVersion: currentVersion, downloadUrl: downloadUrl
+                        });
                         return;
                     }).catch(error => {
                         console.error(error);
-                        response.send({ status: 'bad', message: '網頁端出現錯誤@@, 應該不是你的錯' });
+                        response.send({
+                            status: 'bad', message: '網頁端出現錯誤@@, 應該不是你的錯',
+                            latestVersion: currentVersion, downloadUrl: downloadUrl
+                        });
                         return;
                     });
                 }
                 else {
                     console.log(server.token, recived.token);
-                    response.send({ status: 'bad', message: '秘密代碼錯誤, 你確定這是你的伺服器嗎? = =' });
+                    response.send({
+                        status: 'bad', message: '秘密代碼錯誤, 你確定這是你的伺服器嗎? = =',
+                        latestVersion: currentVersion, downloadUrl: downloadUrl
+                    });
                     return;
                 }
             }
             else {
-                response.send({ status: 'bad', message: 'uid錯誤, 此伺服器不存在' });
+                response.send({
+                    status: 'bad', message: 'uid錯誤, 此伺服器不存在',
+                    latestVersion: currentVersion, downloadUrl: downloadUrl
+                });
                 return;
             }
         });

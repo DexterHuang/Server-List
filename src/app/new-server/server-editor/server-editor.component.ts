@@ -31,6 +31,7 @@ export class ServerEditorComponent implements OnInit {
   description: string;
   selectableTags: Tag[];
   gameVersions: GameVersion[];
+  processing = false;
   constructor(private fb: FormBuilder, public snackBar: MdSnackBar,
     private router: Router, private dialog: MdDialog) {
     this.formGroup = this.fb.group({
@@ -67,6 +68,7 @@ export class ServerEditorComponent implements OnInit {
     this.server = this.inputServer;
   }
   onSubmit(form) {
+    this.processing = true;
     const sendMessage = (msg) => {
       this.snackBar.open(msg, undefined, {
         duration: 2000,

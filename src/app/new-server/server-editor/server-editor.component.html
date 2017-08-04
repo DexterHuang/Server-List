@@ -78,7 +78,7 @@
             (click)="onClickPreview()"
             color="primary">預覽</button>
           <button md-raised-button color="primary"
-            [disabled]="!formGroup.valid  || !server.description">確認</button>
+            [disabled]="!formGroup.valid  || !server.description || processing">確認</button>
         </md-card-actions>
       </form>
     </md-card-content>

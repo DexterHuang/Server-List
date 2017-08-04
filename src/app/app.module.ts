@@ -42,7 +42,11 @@ import { BannerComponent } from './server/banner/banner.component';
 import { ServerDetailComponent } from './server/server-detail/server-detail.component';
 
 import { TagFilterComponent } from './home/tag-filter/tag-filter.component';
-import { SortMethodSelectorComponent } from './home/sort-method-selector/sort-method-selector.component'
+import { SortMethodSelectorComponent } from './home/sort-method-selector/sort-method-selector.component';
+import { FeedbackButtonComponent } from './feedback/feedback-button/feedback-button.component';
+import { FeedbackFormComponent } from './feedback/feedback-form/feedback-form.component';
+import { NotificationControllerComponent } from './notification-controller/notification-controller.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +73,11 @@ import { SortMethodSelectorComponent } from './home/sort-method-selector/sort-me
     BannerComponent,
     ServerDetailComponent,
     TagFilterComponent,
-    SortMethodSelectorComponent
+    SortMethodSelectorComponent,
+    FeedbackButtonComponent,
+    FeedbackFormComponent,
+    NotificationControllerComponent,
+
   ],
   imports: [
     BrowserModule, BrowserAnimationsModule, MdButtonModule,
@@ -84,6 +92,6 @@ import { SortMethodSelectorComponent } from './home/sort-method-selector/sort-me
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CustomMdDialogComponent]
+  entryComponents: [CustomMdDialogComponent, FeedbackFormComponent]
 })
 export class AppModule { }
