@@ -1,0 +1,2 @@
+curl -X POST --header "Authorization: key=AIzaSyC2e7Itq5ZsQJrDMPwGCGE7JjOQnhdsfKc" --Header "Content-Type: application/json" https://fcm.googleapis.com/fcm/send -d "{\"to\":\"dFQhNPpVZBs:APA91bGtkutDbujYcCeT9XhK7C4o8wQB_TM6R0Bkuazfiwuut8yPxoPdqOz0ElqBpNbsy4GjSqwwwlZwdG94Irl2_fI_qT3AGQN9g7TKaDOPZsXM1euOdgcC35kNEW1rz70j7o3VjdZ3\",\"notification\":{\"title\" : \"Shareurcodes.com\",\"body\":\"A Code Sharing Blog!\",\"icon\": \"icon.png\",\"click_action\": \"http://shareurcodes.com\"}}"
+exit

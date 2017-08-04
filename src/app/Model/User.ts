@@ -2,12 +2,14 @@ import * as firebase from 'firebase';
 export class User {
     private static currentUser: User = undefined;
     private static currentUserUid: string = undefined;
+    private static onStateChanges: Function[] = [];
     uid: string;
     displayName: string;
     email: string;
     emailVerified: boolean
     photoURL: string;
     providerId: string;
+    FCMToken: string;
     public static init() {
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
@@ -17,6 +19,9 @@ export class User {
             }
         })
     }
+    public static addOnStateChanges(f) {
+        this.onStateChanges.push(f);
+    }
     public static getCurrentUser() {
         return this.currentUser;
     }
@@ -25,6 +30,10 @@ export class User {
         firebase.database().ref('users/' + uid).once('value', e => {
             this.currentUser = new User();
             Object.assign(this.currentUser, e.val());
+
+            this.onStateChanges.forEach(f => {
+                f();
+            })
         })
     }
     public static isLogedIn(): boolean {

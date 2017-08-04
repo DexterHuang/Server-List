@@ -1,3 +1,4 @@
+import { User } from './../Model/User';
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 @Component({
@@ -11,6 +12,7 @@ export class NotificationControllerComponent implements OnInit {
 
   ngOnInit() {
     const messaging = firebase.messaging();
+
     messaging.requestPermission()
       .then(function () {
         console.log('Notification permission granted.');
@@ -20,19 +22,15 @@ export class NotificationControllerComponent implements OnInit {
       .catch(function (err) {
         console.log('Unable to get permission to notify.', err);
       });
-    messaging.getToken()
-      .then(function (currentToken) {
-        if (currentToken) {
-          this.sendTokenToServer(currentToken);
-        } else {
-          // Show permission request.
-          console.log('No Instance ID token available. Request permission to generate one.');
-          // Show permission UI.
-        }
-      })
-      .catch(function (err) {
-        console.log('An error occurred while retrieving token. ', err);
-      });
+    const sendTokenToServer = (token) => {
+      if (User.getCurrentUser()) {
+        console.log('update user token')
+        const u = User.getCurrentUser();
+        firebase.database().ref('users/' + u.uid + '/FCMToken').set(token);
+      } else {
+        console.log('update non-user token', token)
+      }
+    }
     messaging.onTokenRefresh(function () {
       messaging.getToken()
         .then(function (refreshedToken) {
@@ -40,7 +38,7 @@ export class NotificationControllerComponent implements OnInit {
           // Indicate that the new Instance ID token has not yet been sent to the
           // app server.
           // Send Instance ID token to app server.
-          this.sendTokenToServer(refreshedToken);
+          sendTokenToServer(refreshedToken);
           // ...
         })
         .catch(function (err) {
@@ -48,8 +46,30 @@ export class NotificationControllerComponent implements OnInit {
         });
     });
 
-  }
-  sendTokenToServer(token) {
-    console.log('token!!', token)
+    messaging.onMessage(function (payload) {
+      console.log('Message received. ', payload);
+      // ...
+    });
+    const onUserChange = () => {
+      messaging.getToken()
+        .then(function (currentToken) {
+          if (currentToken) {
+            sendTokenToServer(currentToken);
+          } else {
+            // Show permission request.
+            console.log('No Instance ID token available. Request permission to generate one.');
+            // Show permission UI.
+          }
+        })
+        .catch(function (err) {
+          console.log('An error occurred while retrieving token. ', err);
+        });
+    }
+    User.addOnStateChanges(onUserChange);
+    setTimeout(() => {
+      if (!User.getCurrentUser()) {
+        onUserChange();
+      }
+    }, 10000)
   }
 }
