@@ -1,3 +1,4 @@
+import { DownloadPageComponent } from './download-page/download-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { VotePageComponent } from './vote-page/vote-page.component';
 import { ServerComponent } from './server/server.component';
@@ -22,7 +23,8 @@ export const router: Routes = [
     { path: 'myServers/editServer', component: EditServerComponent },
     { path: 'server', component: ServerComponent },
     { path: 'vote', component: VotePageComponent },
-    { path: 'admin', component: AdminPageComponent }
+    { path: 'admin', component: AdminPageComponent },
+    { path: 'download', component: DownloadPageComponent }
 ];
 
 export const routes: ModuleWithProviders = RouterModule.forRoot(router, { useHash: false });

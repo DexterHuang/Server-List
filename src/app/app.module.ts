@@ -1,3 +1,4 @@
+import { SortMethodService } from './service/sort-method.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, EventEmitter } from '@angular/core';
 
@@ -8,7 +9,7 @@ import {
   MdButtonModule, MdCheckboxModule, MdCardModule, MdToolbarModule,
   MdInputModule, MdDialogModule, MdSnackBarModule, MdSlideToggleModule,
   MdProgressSpinnerModule, MdTooltipModule, MdSelectModule,
-  MdChipsModule
+  MdChipsModule, MdListModule
 
 } from '@angular/material';
 import { LoginComponent } from './login/login.component';
@@ -46,6 +47,10 @@ import { SortMethodSelectorComponent } from './home/sort-method-selector/sort-me
 import { FeedbackButtonComponent } from './feedback/feedback-button/feedback-button.component';
 import { FeedbackFormComponent } from './feedback/feedback-form/feedback-form.component';
 import { NotificationControllerComponent } from './notification-controller/notification-controller.component';
+import { FeedbackFormsComponent } from './admin-page/feedback-forms/feedback-forms.component';
+import { DownloadPageComponent } from './download-page/download-page.component';
+import { LinkToServerComponent } from './server/link-to-server/link-to-server.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +82,10 @@ import { NotificationControllerComponent } from './notification-controller/notif
     FeedbackButtonComponent,
     FeedbackFormComponent,
     NotificationControllerComponent,
+    FeedbackFormsComponent,
+    DownloadPageComponent,
+    LinkToServerComponent,
+    FooterComponent,
 
   ],
   imports: [
@@ -87,11 +96,11 @@ import { NotificationControllerComponent } from './notification-controller/notif
     HttpClientModule, QuillEditorModule, FormsModule,
     ClipModule, MdIconModule, MdProgressSpinnerModule,
     MdTooltipModule, Angular2FontawesomeModule,
-    MdSelectModule, MdChipsModule
+    MdSelectModule, MdChipsModule, MdListModule
 
   ],
-  providers: [],
+  providers: [SortMethodService],
   bootstrap: [AppComponent],
-  entryComponents: [CustomMdDialogComponent, FeedbackFormComponent]
+  entryComponents: [CustomMdDialogComponent, FeedbackFormComponent, LinkToServerComponent]
 })
 export class AppModule { }

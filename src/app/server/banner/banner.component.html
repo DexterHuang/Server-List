@@ -1,6 +1,16 @@
 <div class="imageBox">
-  <a [routerLink]="['../server', {uid: server.uid}]">
-    <h2>{{server.title}}</h2>
+  <a *ngIf="server.uid" [routerLink]="['../server', {uid: server.uid}]">
     <img class="logo" mdCardImage src={{server.logoURL}}>
+    <h2>{{server.title}}</h2>
+   
+  </a>
+  <a *ngIf="!server.uid"> 
+    <img class="logo" mdCardImage src={{server.logoURL}}>
+    <h2>{{server.title}}</h2>
   </a>
 </div>
+<!-- <a [routerLink]="['../server', {uid: server.uid}]"
+  class="imageBox" style="background-image: url('{{server.logoURL}}');">
+  <h2>{{server.title}}</h2>
+
+</a> -->

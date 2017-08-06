@@ -33,7 +33,8 @@
         <md-input-container floatPlaceholder="auto">
           <input mdInput [(ngModel)]="server.RC"
             formControlName="RC"
-            type="text" placeholder="RC">
+            type="text" placeholder="RC"
+            required>
         </md-input-container>
 
         <md-checkbox [(ngModel)]="server.onlineModeEnabled"
@@ -58,9 +59,10 @@
         <md-input-container floatPlaceholder="auto">
           <input mdInput [(ngModel)]="server.title"
             formControlName="title"
-            type="text" placeholder="伺服器標題">
+            type="text" placeholder="伺服器標題"
+            required>
         </md-input-container>
-
+        <label>相關標籤</label>
         <md-chip-list class="tagList" [selectable]="true">
           <md-chip *ngFor="let tag of selectableTags"
             (click)="onSelect(tag)"
@@ -69,6 +71,7 @@
           </md-chip>
         </md-chip-list>
 
+        <label>伺服器詳細敘述 (可以從現有的文章複製貼上喔, 項是你自己的網站 或是巴哈招生文)</label>
         <app-text-editor [(text)]="server.description"></app-text-editor>
         <md-card-actions align="end">
           <button *ngIf="!isNew" md-button

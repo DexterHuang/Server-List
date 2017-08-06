@@ -154,6 +154,7 @@ exports.vote = functions.https.onRequest((request, response) => {
                         likes += 1;
                         likeRef.set(likes).then();
                         admin.database().ref('servers/' + serverUid + '/likes').set(likes).then();
+                        admin.database().ref('servers/' + serverUid + '/lastLikeDate').set(new Date().toJSON()).then();
                     })
                 } else {
                     response.send({ status: 'bad', message: '你今天已經按過讚了喔~每天只能按一次讚', diff: diff })

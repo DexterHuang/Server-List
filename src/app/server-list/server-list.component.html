@@ -1,12 +1,14 @@
-<md-list *ngIf="servers">
-  <md-list-item *ngFor="let server of servers">
-    <app-server-list-item [server]="server"></app-server-list-item>
-  </md-list-item>
-</md-list>
+<div class="container">
+  <div *ngIf="servers">
+    <div *ngFor="let server of servers">
+      <app-server-list-item [server]="server"></app-server-list-item>
+    </div>
+  </div>
 
-<md-card *ngIf="this.getCurrentUser() && servers.length <= 0">
-  <md-card-content>
-    <h1> 您還沒有將您的伺服器加入我們的網頁喔! <br> 按"新增伺服器"吧!
-    </h1>
-  </md-card-content>
-</md-card>
+  <md-card *ngIf="this.getCurrentUser() && servers.length <= 0">
+    <md-card-content>
+      <h1> 您還沒有將您的伺服器加入我們的網頁喔! <br>        按"新增伺服器"吧!
+      </h1>
+    </md-card-content>
+  </md-card>
+</div>

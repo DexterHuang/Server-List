@@ -1,0 +1,66 @@
+<div class="container">
+  <h1>歡迎使用 伺服器列表插件</h1>
+  <div class="stage1">
+    <h2>1. 下載插件</h2>
+    <div class="content">
+      <p>首先, 第一步就是下載插件, 然後將插件檔案放入Plugin資料夾,
+        然後重啟伺服器!
+      </p>
+      <a button md-raised-button color="accent"
+        href="{{downloadLink}}">
+        <md-icon>file_download</md-icon>點我下載
+      </a>
+    </div>
+  </div>
+  <div class="stage2">
+    <h2>2. 大功告成!......?</h2>
+    <div class="content">
+      <p>現在你的伺服器已經被全自動列入伺服器列表內了!</p>
+      <p>但是以系統自動列入的方式是無法自定義伺服器顯示的樣式的,
+        所以下一步會跟妳們解釋如何創建一個只有伺服器主才可以編輯的自定義頁面!
+        <br> 記住喔, 雖然不創建自定義的頁面也可以,
+        但是所有玩家都只會看到預設的名字和看板, 加上屬於你伺服器獨一無二的看板/名字以及其他細項可以大大增加新玩家的數量!
+      </p>
+    </div>
+  </div>
+  <div class="stage3">
+    <h2>3. 創建屬於你自己的頁面!</h2>
+    <div class="content">
+      <p *ngIf="!isLogin()">首先你必須登入此網站, 請點擊
+        <a target="_blank" routerLink="../login"
+          md-raised-button color="primary">
+          <md-icon>account_box</md-icon>
+          登入</a> 登入
+      </p>
+      <p *ngIf="isLogin() ">很好, 你已經登入了</p>
+      <p>登入後, 在
+        <a target="_blank" routerLink="../myServers"
+          md-raised-button color="primary">
+          <md-icon>dashboard</md-icon>
+          我的伺服器</a> 介面點擊
+        <button md-raised-button target="_blank"
+          routerLink="../myServers/newServer"
+          color="accent">新增伺服器</button>        按鈕就可以創建一個新的伺服器頁面了!
+      </p>
+      <p>接下來就是輸入伺服器的詳細資料了! 這個非常簡單應該不需要多餘的解釋.<br>        *你可以直接從其他網站複製你的打好的伺服器敘述,
+        甚麼網站基本上都可以, 包括巴哈姆特的招生文</p>
+      <p>輸入儲存完畢後這個伺服器就會顯示在列表裡了!<br>        再來就是要讓伺服器與本網連結, 這樣玩家才可以幫伺服器案讚!
+        <br> 越多讚的伺服器會排名越前喔! 也就是說會更多人看見!
+      </p>
+    </div>
+  </div>
+
+  <div class="stage4">
+    <h2>4. 與伺服器連結 (超級無敵宇宙級簡單!!)</h2>
+    <div class="content">
+      <p> 在剛剛的
+        <a target="_blank" routerLink="../myServers"
+          md-raised-button color="primary">
+          <md-icon>dashboard</md-icon>
+          我的伺服器</a> 介面點擊你剛剛所創建的伺服器進入詳細資料介面</p>
+      <p>在伺服器的詳細介面的最下角點擊 <button md-raised-button
+          color="accent"><i class="fa fa-link" aria-hidden="true"></i> 與伺服器連結
+    </button> 就會跳出所需的指令, 在遊戲中打了指令如果沒有錯誤就成功了!</p>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { LinkToServerComponent } from './link-to-server/link-to-server.component';
 import { CustomMdDialogComponent } from './../custom-md-dialog/custom-md-dialog.component';
 import { MdDialog } from '@angular/material';
 import { User } from './../Model/User';
@@ -39,7 +40,8 @@ export class ServerComponent implements OnInit {
       return false;
     }
     if (this.server && User.getCurrentUser()) {
-      if (User.getCurrentUser().uid === this.server.ownerUid) {
+      if (User.getCurrentUser().uid === this.server.ownerUid ||
+        User.getCurrentUser().uid === 'aXmmXWQmvuaLtx3Kd4uMRBtOw1O2') {
         return true;
       }
     }
@@ -49,5 +51,9 @@ export class ServerComponent implements OnInit {
     const dialog = this.dialog.open(CustomMdDialogComponent).componentInstance;
     dialog.title = ':D';
     dialog.message = '要按讚的話必須要登入伺服器然後打/twVote喔!';
+  }
+  onClickLink() {
+    const dialog = this.dialog.open(LinkToServerComponent).componentInstance
+    dialog.command = this.command;
   }
 }

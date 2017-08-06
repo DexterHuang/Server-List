@@ -13,12 +13,25 @@ export class Server {
     token: string;
     lastPingTime: number;
     tags: string[] = [];
-    title: string;
-    RC: string;
+    title = '';
+    RC: '';
     playerVerification: string;
     website: string;
     gameVersion = '1.12'
     likes = 0;
-    createdDate: Date;
-    lastLikeDate: Date;
+    private createdDate: string;
+    private lastLikeDate: string;
+
+    public setCreateDate(date: Date) {
+        this.createdDate = date.toJSON();
+    }
+    public getCreatedDate() {
+        return this.createdDate;
+    }
+    public setLastLikeDate(date: Date) {
+        this.lastLikeDate = date.toJSON();
+    }
+    public getLastLikeDate() {
+        return this.lastLikeDate;
+    }
 }

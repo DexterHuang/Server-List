@@ -1,0 +1,16 @@
+@import 'src/my-theme.scss';
+.footer{
+    display: block;
+    bottom: 0px;
+    margin-top: 50px;
+    background-color: mat-color($candy-app-accent);
+    border-color: mat-color($candy-app-accent, A400);
+    width: 100%;
+    text-align: center;
+}
+.content{ 
+    padding: 2%;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+} 

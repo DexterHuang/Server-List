@@ -4,7 +4,7 @@
     </md-card-header>
     <md-card-content>
         <app-page-selector [(selectedPage)]="currentPage"
-            (pageChanged)="onChange($event)"></app-page-selector>
+            (pageChanged)="onPageChange($event)"></app-page-selector>
         <div class="tagFilter">
             <app-tag-filter (onTagChange)="onTagChange($event)"></app-tag-filter>
         </div>

@@ -20,6 +20,7 @@ export class AppComponent {
     };
     firebase.initializeApp(config);
     User.init();
+
   }
 }
 

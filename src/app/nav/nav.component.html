@@ -1,19 +1,28 @@
 <md-toolbar color="primary">
-  <button routerLink="./home" md-button>
+  <a routerLink="./home" md-button>
     <md-icon>home</md-icon>
-    台灣創世神伺服器</button>
-  <button routerLink="./myServers" *ngIf="isLogin()" md-button>
+    創世神伺服器列表</a>
+  <a routerLink="./myServers" *ngIf="isLogin()"
+    md-button>
     <md-icon>dashboard</md-icon>
-    我的伺服器</button>
-  <button routerLink="./login" *ngIf="!isLogin()" md-button>
+    我的伺服器</a>
+  <a button md-button routerLink="./download">
+    <md-icon>file_download</md-icon>
+    下載插件</a>
+  <a routerLink="./login" *ngIf="!isLogin()"
+    md-button>
     <md-icon>account_box</md-icon>
-    登入</button>
-  <button (click)="logOut()" *ngIf="isLogin()" md-button>
-        <md-icon>account_box</md-icon>
-    登出</button>
-  <button routerLink="./admin" *ngIf="getCurrentUser() && getCurrentUser().isAdmin()" md-button>Admin</button>
+    登入</a>
+  <a routerLink="./admin" *ngIf="getCurrentUser() && getCurrentUser().isAdmin()"
+    md-button>Admin</a>
+  <a (click)="logOut()" *ngIf="isLogin()"
+    md-button>
+    <md-icon>account_box</md-icon>
+    登出</a>
+
   <span *ngIf="getCurrentUser()">{{getCurrentUser().displayName}}</span>
 
 </md-toolbar>
-
-<router-outlet></router-outlet>
+<div class="out">
+  <router-outlet></router-outlet>
+</div>

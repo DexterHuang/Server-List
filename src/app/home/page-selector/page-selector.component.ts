@@ -1,11 +1,11 @@
-import { Component, OnInit, SimpleChanges, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-page-selector',
   templateUrl: './page-selector.component.html',
   styleUrls: ['./page-selector.component.css']
 })
-export class PageSelectorComponent implements OnChanges, OnInit {
+export class PageSelectorComponent implements OnInit {
 
   @Input() selectedPage: number;
   @Output() pageChanged = new EventEmitter<number>();
@@ -26,10 +26,6 @@ export class PageSelectorComponent implements OnChanges, OnInit {
   }
   onClick(page: number) {
     this.selectedPage = page;
-    this.init();
-    this.pageChanged.emit(this.selectedPage);
-  }
-  ngOnChanges(changes: SimpleChanges): void {
     this.init();
     this.pageChanged.emit(this.selectedPage);
   }

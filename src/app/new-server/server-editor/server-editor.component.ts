@@ -80,27 +80,31 @@ export class ServerEditorComponent implements OnInit {
         ref = firebase.database().ref('servers/').push();
         this.server.uid = ref.key;
         this.server.token = MathHelper.getRandomUUID();
+        this.server.setCreateDate(new Date());
       } else {
         ref = firebase.database().ref('servers/' + this.server.uid);
       }
+      if (!this.server.getCreatedDate()) {
+        this.server.setCreateDate(new Date());
+      }
       this.server.ownerUid = User.getCurrentUser().uid;
-      const upload = () => {
-        ref.set(this.server).then(e => {
-          sendMessage('伺服器新增成功!');
-          this.router.navigate(['./myServers']);
-        }).catch(e => {
-          sendMessage('伺服器新增失敗! ' + e.message);
-        })
-      }
-      if (this.imageBytes) {
-        const path = 'users/' + User.getCurrentUser().uid + '/servers/' + this.server.uid + '/images';
-        firebase.storage().ref(path).child(MathHelper.getRandomUUID()).put(this.imageBytes).then(e => {
-          this.server.logoURL = e.downloadURL;
-          upload();
-        })
-      } else {
-        upload();
-      }
+      ref.set(this.server).then(e => {
+        sendMessage('伺服器新增成功!');
+        console.log(this.server.getCreatedDate())
+        this.router.navigate(['./myServers']);
+      }).catch(e => {
+        sendMessage('伺服器新增失敗! ' + e.message);
+        this.processing = false;
+      })
+      // if (this.imageBytes) {
+      //   const path = 'users/' + User.getCurrentUser().uid + '/servers/' + this.server.uid + '/images';
+      //   firebase.storage().ref(path).child(MathHelper.getRandomUUID()).put(this.imageBytes).then(e => {
+      //     this.server.logoURL = e.downloadURL;
+      //     upload();
+      //   })
+      // } else {
+      //   upload();
+      // }
 
     } else {
       sendMessage('請先登入');

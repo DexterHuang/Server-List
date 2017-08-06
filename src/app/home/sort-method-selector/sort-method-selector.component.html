@@ -1,5 +1,6 @@
-<md-select placeholder="排列順序" [(ngModel)]="defaultMethod">
-  <md-option *ngFor="let method of sortMethods"
+<md-select placeholder="排列順序" [(ngModel)]="sortMethodService.defaultMethod"
+  (change)="onChange($event)">
+  <md-option *ngFor="let method of sortMethodService.sortMethods"
     [value]="method">
     {{method.display}}
   </md-option>

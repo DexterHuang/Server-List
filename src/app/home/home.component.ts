@@ -1,3 +1,4 @@
+import { SortMethodService } from './../service/sort-method.service';
 import { SortMethod } from './../Model/SortMethod';
 import { Tag } from './../Model/Tag';
 import { User } from './../Model/User';
@@ -19,17 +20,15 @@ export class HomeComponent implements OnInit, OnChanges {
   filterTags: Tag[] = [];
   filterOnlineModeEnabled = false;
   filterOnlineModeDisable = false;
-  sortMethod: SortMethod = new SortMethod('最受喜愛', (a: Server, b: Server) => {
-    if (a.likes < b.likes) {
-      return 1;
-    }
-    return -1;
-  });
+  sortMethod: SortMethod;
+  constructor(private sortMethodService: SortMethodService) {
+    this.sortMethod = this.sortMethodService.defaultMethod;
+  }
   refreshPageNumber() {
     this.allServers = [];
     this.allServers = this.allServers.concat(this.normalServers, this.pingServers);
     const startIndex = (this.currentPage - 1) * this.serverPerPage;
-    const endIndex = startIndex + 10;
+    const endIndex = startIndex + this.serverPerPage;
 
     this.allServers = this.allServers.filter(server => {
       let filter = true;
@@ -83,8 +82,9 @@ export class HomeComponent implements OnInit, OnChanges {
   getCurrentUser() {
     return User.getCurrentUser();
   }
-  onChange(e: number) {
+  onPageChange(e: number) {
     this.currentPage = e;
+    this.refreshPageNumber();
   }
   onTagChange(tags: Tag[]) {
     this.filterTags = tags;

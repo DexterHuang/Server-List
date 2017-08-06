@@ -159,6 +159,7 @@ exports.vote = functions.https.onRequest((request, response) => {
                         likes += 1;
                         likeRef.set(likes).then();
                         admin.database().ref('servers/' + serverUid + '/likes').set(likes).then();
+                        admin.database().ref('servers/' + serverUid + '/lastLikeDate').set(new Date().toJSON()).then();
                     });
                 }
                 else {
