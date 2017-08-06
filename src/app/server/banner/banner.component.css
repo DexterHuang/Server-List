@@ -1,22 +1,22 @@
 .imageBox{
+    position: relative;
     overflow: hidden;
     width: auto;
     margin: auto;
     max-height: 90px;
     max-width: 728px;
     min-width: 100%;
-    background-color: black;
 }
 .imageBox img{
-    position: relative;
     object-fit: contain;
     margin: auto;
     border-radius: 3px;
     overflow: hidden;
+    width: 100%;
 }
 .imageBox h2{
-    overflow: hidden; 
     position: absolute;
+    overflow: hidden; 
     text-overflow: clip;
     margin: 10px;
     top: 0px;
