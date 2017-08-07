@@ -1,3 +1,4 @@
+import { GoogleAnalyticEventsService } from './../service/google-analytic-events.service';
 import { User } from './../Model/User';
 import { Server } from './../Model/Server';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +10,7 @@ import * as firebase from 'firebase';
 })
 export class MyServersComponent implements OnInit {
   servers: Server[] = [];
+  constructor(private gas: GoogleAnalyticEventsService) { }
   ngOnInit() {
     const triedTimes = 0;
     let success = false;
@@ -26,7 +28,6 @@ export class MyServersComponent implements OnInit {
         success = true;
       }
     }, 1000);
-
   }
   getCurrentUser() {
     return User.getCurrentUser();

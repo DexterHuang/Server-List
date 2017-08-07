@@ -1,10 +1,12 @@
+import { VotePageSuccessDialogComponent } from './vote-page-success-dialog/vote-page-success-dialog.component';
+import { GoogleAnalyticEventsService } from './../service/google-analytic-events.service';
 import { LoginComponent } from './../login/login.component';
 import { User } from './../Model/User';
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { CustomMdDialogComponent } from './../custom-md-dialog/custom-md-dialog.component';
 import { MdDialog } from '@angular/material';
 import { Server } from './../Model/Server';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 @Component({
@@ -19,7 +21,8 @@ export class VotePageComponent implements OnInit {
   voteResult: string;
   msg: string;
   copyString: string;
-  constructor(private http: HttpClient, private route: ActivatedRoute, private dialog: MdDialog) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private dialog: MdDialog,
+    private gas: GoogleAnalyticEventsService, private router: Router) { }
   // server;uid=-KpFSUorX7N0DKUp7B8A;playerName=thunderbuddyted
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -30,10 +33,12 @@ export class VotePageComponent implements OnInit {
           if (e.exists()) {
             this.server = new Server();
             Object.assign(this.server, e.val())
+            this.gas.emitEvent('votePage', 'pagedLoaded', 'onInit')
           } else {
             const d = this.dialog.open(CustomMdDialogComponent);
             d.componentInstance.title = 'T ^ T';
             d.componentInstance.message = '好像這個伺服器不存在呢..';
+            this.gas.emitEvent('votePage', 'cannot find server', 'onInit')
           }
         })
       } else {
@@ -41,6 +46,7 @@ export class VotePageComponent implements OnInit {
           const d = this.dialog.open(CustomMdDialogComponent);
           d.componentInstance.title = '??@@';
           d.componentInstance.message = '這個網址不是正確的';
+          this.gas.emitEvent('votePage', 'wrong url', 'onInit')
         }, 1);
       }
     })
@@ -55,6 +61,8 @@ export class VotePageComponent implements OnInit {
       const url = 'https://us-central1-serverlist-362d5.cloudfunctions.net/vote';
       const local = 'http://localhost:5002/serverlist-362d5/us-central1/vote';
       this.voteResult = 'waiting';
+
+      this.gas.emitEvent('votePage', 'processing', 'clickedLike')
       this.http.post(url, {
         playerName: this.playerName,
         serverUid: this.server.uid,
@@ -63,9 +71,14 @@ export class VotePageComponent implements OnInit {
         console.log(e);
         if (e['status'] === 'good') {
           this.voteResult = 'voted'
+          this.gas.emitEvent('votePage', 'successAndRedirected', 'clickedLike')
+          this.router.navigate(['home']);
+          const dialog = this.dialog.open(VotePageSuccessDialogComponent).componentInstance;
+          dialog.command = this.copyString;
         } else {
           this.voteResult = 'bad';
           this.msg = e['message'];
+          this.gas.emitEvent('votePage', 'failed : ' + this.msg, 'clickedLike')
         }
       })
     } else {

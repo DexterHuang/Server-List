@@ -1,3 +1,4 @@
+import { GoogleAnalyticEventsService } from './service/google-analytic-events.service';
 import { SortMethodService } from './service/sort-method.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, EventEmitter } from '@angular/core';
@@ -51,6 +52,7 @@ import { FeedbackFormsComponent } from './admin-page/feedback-forms/feedback-for
 import { DownloadPageComponent } from './download-page/download-page.component';
 import { LinkToServerComponent } from './server/link-to-server/link-to-server.component';
 import { FooterComponent } from './footer/footer.component';
+import { VotePageSuccessDialogComponent } from './vote-page/vote-page-success-dialog/vote-page-success-dialog.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +88,7 @@ import { FooterComponent } from './footer/footer.component';
     DownloadPageComponent,
     LinkToServerComponent,
     FooterComponent,
+    VotePageSuccessDialogComponent,
 
   ],
   imports: [
@@ -99,8 +102,8 @@ import { FooterComponent } from './footer/footer.component';
     MdSelectModule, MdChipsModule, MdListModule
 
   ],
-  providers: [SortMethodService],
+  providers: [SortMethodService, GoogleAnalyticEventsService],
   bootstrap: [AppComponent],
-  entryComponents: [CustomMdDialogComponent, FeedbackFormComponent, LinkToServerComponent]
+  entryComponents: [VotePageSuccessDialogComponent, CustomMdDialogComponent, FeedbackFormComponent, LinkToServerComponent]
 })
 export class AppModule { }

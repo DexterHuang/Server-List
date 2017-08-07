@@ -1,3 +1,4 @@
+import { GoogleAnalyticEventsService } from './../../service/google-analytic-events.service';
 import { GameVersion } from './../../Model/GameVersion';
 import { Tag } from './../../Model/Tag';
 import { ServerComponent } from './../../server/server.component';
@@ -33,7 +34,8 @@ export class ServerEditorComponent implements OnInit {
   gameVersions: GameVersion[];
   processing = false;
   constructor(private fb: FormBuilder, public snackBar: MdSnackBar,
-    private router: Router, private dialog: MdDialog) {
+    private router: Router, private dialog: MdDialog,
+    private gas: GoogleAnalyticEventsService) {
     this.formGroup = this.fb.group({
       serverName: ['', Validators.compose([Validators.minLength(2), Validators.maxLength(20)])],
       serverIP: ['', Validators.required],
@@ -75,6 +77,7 @@ export class ServerEditorComponent implements OnInit {
       });
     }
     if (User.getCurrentUser()) {
+      this.gas.emitEvent('creatingServer', 'start processing', 'submitClicked')
       let ref;
       if (this.isNew) {
         ref = firebase.database().ref('servers/').push();
@@ -87,13 +90,18 @@ export class ServerEditorComponent implements OnInit {
       if (!this.server.getCreatedDate()) {
         this.server.setCreateDate(new Date());
       }
-      this.server.ownerUid = User.getCurrentUser().uid;
+      if (!this.server.ownerUid) {
+        this.server.ownerUid = User.getCurrentUser().uid;
+
+      }
       ref.set(this.server).then(e => {
         sendMessage('伺服器新增成功!');
         console.log(this.server.getCreatedDate())
         this.router.navigate(['./myServers']);
+        this.gas.emitEvent('creatingServer', 'success', 'submitClicked')
       }).catch(e => {
         sendMessage('伺服器新增失敗! ' + e.message);
+        this.gas.emitEvent('creatingServer', 'fucking failed' + e.message, 'submitClicked')
         this.processing = false;
       })
       // if (this.imageBytes) {
@@ -109,6 +117,7 @@ export class ServerEditorComponent implements OnInit {
     } else {
       sendMessage('請先登入');
       this.router.navigate(['./login']);
+      this.gas.emitEvent('creatingServer', 'not loged in', 'submitClicked')
     }
   }
   public dropped(event: UploadEvent) {
@@ -161,6 +170,7 @@ export class ServerEditorComponent implements OnInit {
     Object.assign(tempServer, this.server);
     dialog.server = tempServer;
     dialog.forceNoEdit = true;
+    this.gas.emitEvent('creatingServer', 'shown', 'clickedPreview')
   }
 
   onSelect(tag: Tag) {
@@ -185,6 +195,7 @@ export class ServerEditorComponent implements OnInit {
         this.router.navigate(['../myServers'])
       })
     }));
+    this.gas.emitEvent('creatingServer', 'removedServer', 'removedServer')
   }
   onSelectGameVersion(e) {
     this.server.gameVersion = e.value

@@ -10,11 +10,13 @@ export class GoogleAnalyticEventsService {
     eventAction: string,
     eventLabel: string = null,
     eventValue: number = null) {
-    ga('send', 'event', {
+    const data = {
       eventCategory: eventCategory,
       eventLabel: eventLabel,
       eventAction: eventAction,
       eventValue: eventValue
-    });
+    };
+    ga('send', 'event', data);
+    console.log('event send', data)
   }
 }

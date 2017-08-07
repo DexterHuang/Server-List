@@ -9,9 +9,16 @@ export class SortMethodService {
   defaultMethod: SortMethod;
   constructor() {
     const compareByLastLikeDate = (a: Server, b: Server) => {
-      if (a.getLastLikeDate() < b.getLastLikeDate()) {
+      if (a.getLastLikeDate() && b.getLastLikeDate()) {
+        if (a.getLastLikeDate() < b.getLastLikeDate()) {
+          return 1;
+        }
+      }
+
+      if (a.getCreatedDate() < b.getCreatedDate()) {
         return 1;
       }
+
       return -1;
     }
     this.sortMethods.push(new SortMethod('最受喜愛', (a: Server, b: Server) => {
